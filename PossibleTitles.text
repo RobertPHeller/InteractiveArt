@@ -1,20 +1,23 @@
 1. Hello World
-   Touch Sensors on world map => Hello in different languages (LCD Dot-matrix display)
+   Touch Sensors on world map => Hello in different languages (LCD Dot-matrix 
+   display)
 2. Welcome To Gothem City
    SR04 Sensor lights Bat Signal when viewer is close to piece
 3. Paging Dr. Howard, Dr. Fine, Dr. Howard
    Heartbeat Sensor => LED osciliscope + pulse rate display
 4. The Game's Afoot
-   Fingerprint sensor => Fingerprint display
-5. Why Did The Chicken Cross The Street
+   Fingerprint sensor/scanner => Fingerprint display
+5. Why Did The Chicken Cross The Street?
    Traffic light w/ ped. crossing (push to walk button)
-6. Spacely Sprockets / Robots Are Us / Roberts Universal Robots
+6. Spacely Sprockets / Robots Are Us / Robert's Universal Robots
    Start / Stop buttons control Servos (robot arms, legs, machinery?)
 7. Stray Cats
-   TV remote -- all channels show cats (IR remote + TFT Display w/ SD card reader)
+   TV remote -- all channels show cats (IR remote + TFT Display w/ SD card 
+   reader) 
 8. Only Her Hairdresser Knows For Sure
    Color sensor => lights fiber optic "hair"
 9. Steel Wheels Rolling
-   Neopixel rings for steam loco wheels, with slide pot throttle
+   Neopixel rings for steam loco wheels and smokestack, with slide pot 
+   throttle 
 10. Sound Engineering
-   Microphone => neopixel VU meter.
+   Microphone => neopixel VU meter (or LED bar graph).
