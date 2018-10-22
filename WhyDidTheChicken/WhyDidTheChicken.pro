@@ -1,13 +1,11 @@
-update=Mon 22 Oct 2018 10:43:24 EDT
+update=Mon 22 Oct 2018 09:27:30 EDT
 version=1
-last_client=pcbnew
+last_client=kicad
 [cvpcb]
 version=1
 NetIExt=net
 [cvpcb/libraries]
 EquName1=devcms
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=
@@ -47,17 +45,14 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
-LibName31=/home/heller/InteractiveArt/adafruit_breakouts
-LibName32=/home/heller/InteractiveArt/feather_m0_express
-LibName33=/home/heller/InteractiveArt/metromini
 [pcbnew]
 version=1
 LastNetListRead=
 UseCmpFile=1
-PadDrill="    1.016000"
-PadDrillOvalY="    1.016000"
-PadSizeH="    1.524000"
-PadSizeV="    1.524000"
+PadDrill="    3.500000"
+PadDrillOvalY="    3.500000"
+PadSizeH="    3.500000"
+PadSizeV="    3.500000"
 PcbTextSizeV="    1.500000"
 PcbTextSizeH="    1.500000"
 PcbTextThickness="    0.300000"
@@ -88,9 +83,5 @@ LibName14=dip_sockets
 LibName15=pga_sockets
 LibName16=valves
 LibName17=MH
-LibName18=/home/heller/InteractiveArt/AdafruitBreakouts
-LibName19=/home/heller/InteractiveArt/AdafruitFeather
-LibName20=w_conn_screw
-LibName21=w_conn_strip
-LibName22=/home/heller/InteractiveArt/ScrewTerm254_12
-LibName23=/home/heller/InteractiveArt/PinArray8
+[general]
+version=1

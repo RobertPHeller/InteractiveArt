@@ -1,0 +1,112 @@
+PCBNEW-LibModule-V1  Mon 22 Oct 2018 10:35:23 EDT
+# encoding utf-8
+Units mm
+$INDEX
+ScrewTerm_2.54-12
+$EndINDEX
+$MODULE ScrewTerm_2.54-12
+Po 0 0 0 15 5BCDDE17 00000000 ~~
+Li ScrewTerm_2.54-12
+Cd Screw Terminals, 2.54 pitch, 12 position
+Kw CONN
+Sc 0
+AR /581E3F5A
+Op 0 0 0
+T0 0 2.54 1.016 1.016 0 0.2032 N I 21 N "T1"
+T1 0 -2.54 1.016 1.016 0 0.2032 N V 21 N "GPIO"
+DS -15.24 -1.27 -15.24 1.27 0.3048 21
+DS 15.24 1.27 15.24 -1.27 0.3048 21
+DS -15.24 -1.27 15.24 -1.27 0.3048 21
+DS 15.24 1.27 -15.24 1.27 0.3048 21
+$PAD
+Sh "1" R 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -13.97 0
+$EndPAD
+$PAD
+Sh "2" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11.43 0
+$EndPAD
+$PAD
+Sh "3" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -8.89 0
+$EndPAD
+$PAD
+Sh "4" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -6.35 0
+$EndPAD
+$PAD
+Sh "5" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -3.81 0
+$EndPAD
+$PAD
+Sh "6" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -1.27 0
+$EndPAD
+$PAD
+Sh "7" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 1.27 0
+$EndPAD
+$PAD
+Sh "8" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 3.81 0
+$EndPAD
+$PAD
+Sh "9" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 6.35 0
+$EndPAD
+$PAD
+Sh "10" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 8.89 0
+$EndPAD
+$PAD
+Sh "11" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11.43 0
+$EndPAD
+$PAD
+Sh "12" C 1.524 1.524 0 0 0
+Dr 1.016 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 13.97 0
+$EndPAD
+$SHAPE3D
+Na "walter/conn_screw/mors_12p.wrl"
+Sc 0.5 0.5 0.5
+Of 0 0 0
+Ro 0 0 180
+$EndSHAPE3D
+$EndMODULE ScrewTerm_2.54-12
+$EndLIBRARY

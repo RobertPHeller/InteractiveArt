@@ -1,0 +1,45 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Mon 22 Oct 2018 11:09:16 EDT
+
+BeginCmp
+TimeStamp = /5BCDD718;
+Reference = P1;
+ValeurCmp = Nokia 5110/3310 Monochrome LCD;
+IdModule  = pin_array_8x1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BCDE79F;
+Reference = P2;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BCDE843;
+Reference = P3;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BCDD4B2;
+Reference = T1;
+ValeurCmp = Touch Sensor;
+IdModule  = ScrewTerm_2.54-12;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BCDD2C0;
+Reference = U1;
+ValeurCmp = FEATHER_M0_EXPRESS;
+IdModule  = AdafruitFeather;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BCDD354;
+Reference = U2;
+ValeurCmp = MPR121_BREAKOUT;
+IdModule  = MPR121_Breakout;
+EndCmp
+
+EndListe
