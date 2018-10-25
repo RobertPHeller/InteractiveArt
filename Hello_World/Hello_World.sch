@@ -32,13 +32,14 @@ LIBS:valves
 LIBS:adafruit_breakouts
 LIBS:feather_m0_express
 LIBS:metromini
+LIBS:Hello_World-cache
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "22 oct 2018"
+Date "24 oct 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -169,7 +170,7 @@ L CONN_12 T1
 U 1 1 5BCDD4B2
 P 7450 2650
 F 0 "T1" V 7400 2650 60  0000 C CNN
-F 1 "Touch Sensor" V 7500 2650 60  0000 C CNN
+F 1 "us mx br it de ru na ir cn fr jp in" V 7500 2650 60  0000 C CNN
 F 2 "~" H 7450 2650 60  0000 C CNN
 F 3 "~" H 7450 2650 60  0000 C CNN
 	1    7450 2650
