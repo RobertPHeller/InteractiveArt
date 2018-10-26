@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181025.2226>
+//  Last Modified : <181026.1415>
 //
 //  Description	
 //
@@ -49,11 +49,11 @@ const int LEDS     = 5;
 // Anything over 400 cm (23200 us pulse) is "out of range"
 const unsigned int MAX_DIST = 23200;
 
-const float CLOSE_INCHES = 5.0;
-const float NEAR_INCHES  = 10.0;
-const float FAR_INCHES   = 15.0;
-const float VERY_FAR_INCHES = 30.0;
-const float DISTANT_INCHES  = 60.0;
+const float CLOSE_INCHES = 2.5;
+const float NEAR_INCHES  = 5.0;
+const float FAR_INCHES   = 10.0;
+const float VERY_FAR_INCHES = 15.0;
+const float DISTANT_INCHES  = 30.0;
 
 void setup() {
     // The Trigger pin will tell the sensor to range find
