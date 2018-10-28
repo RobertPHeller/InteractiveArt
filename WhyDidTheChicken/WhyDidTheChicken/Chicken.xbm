@@ -1,0 +1,4 @@
+#define Chicken_width 8
+#define Chicken_height 8
+static unsigned char Chicken_bits[] = {
+   0x18, 0x3c, 0x18, 0x08, 0x1c, 0x3e, 0x1c, 0x22 };

@@ -1,11 +1,13 @@
-update=Mon 22 Oct 2018 09:27:30 EDT
+update=Sat 27 Oct 2018 18:47:53 EDT
 version=1
-last_client=kicad
+last_client=pcbnew
 [cvpcb]
 version=1
 NetIExt=net
 [cvpcb/libraries]
 EquName1=devcms
+[general]
+version=1
 [eeschema]
 version=1
 LibDir=
@@ -45,14 +47,17 @@ LibName27=opto
 LibName28=atmel
 LibName29=contrib
 LibName30=valves
+LibName31=/home/heller/InteractiveArt/metromini
+LibName32=/home/heller/InteractiveArt/adafruit_breakouts
+LibName33=/home/heller/InteractiveArt/adafruit_powerboost_500
 [pcbnew]
 version=1
-LastNetListRead=
+LastNetListRead=WhyDidTheChicken.net
 UseCmpFile=1
-PadDrill="    3.500000"
-PadDrillOvalY="    3.500000"
-PadSizeH="    3.500000"
-PadSizeV="    3.500000"
+PadDrill="    1.016000"
+PadDrillOvalY="    1.016000"
+PadSizeH="    1.524000"
+PadSizeV="    1.524000"
 PcbTextSizeV="    1.500000"
 PcbTextSizeH="    1.500000"
 PcbTextThickness="    0.300000"
@@ -83,5 +88,6 @@ LibName14=dip_sockets
 LibName15=pga_sockets
 LibName16=valves
 LibName17=MH
-[general]
-version=1
+LibName18=/home/heller/InteractiveArt/AdafruitBreakouts
+LibName19=/home/heller/InteractiveArt/MetroMini
+LibName20=/home/heller/InteractiveArt/PinArray6
