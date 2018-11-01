@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/heller/InteractiveArt/WelcomeToGothemCity/WelcomeToGothemCity.sch)
-    (date "Thu 25 Oct 2018 16:49:20 EDT")
+    (date "Thu 01 Nov 2018 11:36:31 EDT")
     (tool "eeschema (2013-june-11)-stable"))
   (components
     (comp (ref U2)
@@ -31,7 +31,7 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 5BD22897))
     (comp (ref R2)
-      (value R)
+      (value "2.7 Ohms, 3 Watt")
       (libsource (lib device) (part R))
       (sheetpath (names /) (tstamps /))
       (tstamp 5BD22917))
@@ -169,10 +169,10 @@
   (libraries
     (library (logical device)
       (uri /usr/share/kicad/library/device.lib))
-    (library (logical conn)
-      (uri /usr/share/kicad/library/conn.lib))
     (library (logical transistors)
       (uri /usr/share/kicad/library/transistors.lib))
+    (library (logical conn)
+      (uri /usr/share/kicad/library/conn.lib))
     (library (logical metromini)
       (uri /home/heller/InteractiveArt/metromini.lib))
     (library (logical adafruit_powerboost_500)

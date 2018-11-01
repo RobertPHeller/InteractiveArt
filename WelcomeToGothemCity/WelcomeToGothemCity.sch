@@ -40,7 +40,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "25 oct 2018"
+Date "1 nov 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -244,9 +244,10 @@ L R R2
 U 1 1 5BD22917
 P 4900 2400
 F 0 "R2" V 4980 2400 40  0000 C CNN
-F 1 "R" V 4907 2401 40  0000 C CNN
+F 1 "2.7 Ohms, 3 Watt" V 4907 2401 40  0000 C CNN
 F 2 "~" V 4830 2400 30  0000 C CNN
 F 3 "~" H 4900 2400 30  0000 C CNN
+F 4 "594-5093NW2R700J" H 4900 2400 60  0001 C CNN "Mouser Part Number"
 	1    4900 2400
 	1    0    0    -1  
 $EndComp

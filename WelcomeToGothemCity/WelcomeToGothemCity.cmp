@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Thu 25 Oct 2018 16:47:29 EDT
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Thu 01 Nov 2018 12:00:51 EDT
 
 BeginCmp
 TimeStamp = /5BD2164B;
@@ -52,8 +52,8 @@ EndCmp
 BeginCmp
 TimeStamp = /5BD22917;
 Reference = R2;
-ValeurCmp = R;
-IdModule  = R4;
+ValeurCmp = 2.7 Ohms, 3 Watt;
+IdModule  = R7;
 EndCmp
 
 BeginCmp
