@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181024.0904>
+//  Last Modified : <181029.1733>
 //
 //  Description	
 //
@@ -42,12 +42,69 @@
 
 static const char rcsid[] = "@(#) : $Id$";
 
-void setup() {
-  // put your setup code here, to run once:
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+Adafruit_PWMServoDriver factoryFloor = Adafruit_PWMServoDriver();
 
+#define SERVOMIN  150 // this is the 'minimum' pulse length count (out of 4096)
+#define SERVOMAX  600 // this is the 'maximum' pulse length count (out of 4096)
+
+const int StartButton = 6;
+const int StopButton  = 5;
+
+bool factoryStarted = false;
+
+// our servo # counter
+uint8_t servonum = 0;
+
+void setup() {
+    
+    factoryFloor.begin();
+    factoryFloor.setPWMFreq(60);  // Analog servos run at ~60 Hz updates
+    delay(10);
+    pinMode(StartButton,INPUT_PULLUP);
+    pinMode(StopButton,INPUT_PULLUP);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+    int count;
+    int lows;
+    
+    if (factoryStarted) {
+        if (digitalRead(StopButton) == LOW) {
+            lows = 1;
+            for (count = 0; count < 3; count++) {
+                lows += (digitalRead(StopButton) == LOW)?1:0;
+            }
+            if (lows > 2) {
+                factoryStarted = false;
+            }
+        }
+    } else {
+        if (digitalRead(StartButton) == LOW) {
+            lows = 1;
+            for (count = 0; count < 3; count++) {
+                lows += (digitalRead(StartButton) == LOW)?1:0;
+            }
+            if (lows > 2) {
+                factoryStarted = true;
+                servonum = 0;
+            }
+        }
+    }
+    if (factoryStarted) {
+        for (uint16_t pulselen = SERVOMIN; pulselen < SERVOMAX; pulselen++) {
+            factoryFloor.setPWM(servonum, 0, pulselen);
+        }
+        
+        delay(500);
+        for (uint16_t pulselen = SERVOMAX; pulselen > SERVOMIN; pulselen--) {
+            factoryFloor.setPWM(servonum, 0, pulselen);
+        }
+        
+        delay(500);
+        
+        servonum ++;
+        if (servonum > 7) servonum = 0;
+    }
 }

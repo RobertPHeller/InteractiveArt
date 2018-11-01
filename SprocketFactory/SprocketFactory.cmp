@@ -1,0 +1,38 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Mon 29 Oct 2018 15:39:58 EDT
+
+BeginCmp
+TimeStamp = /5BD75742;
+Reference = SW1;
+ValeurCmp = Start;
+IdModule  = SW_PUSH-12mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BD75751;
+Reference = SW2;
+ValeurCmp = Stop;
+IdModule  = SW_PUSH-12mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BD71463;
+Reference = U1;
+ValeurCmp = FEATHER_M0_EXPRESS;
+IdModule  = AdafruitFeather;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BD74B3A;
+Reference = U2;
+ValeurCmp = 8-CHANNELSERVO​FEATHERWING;
+IdModule  = 8ChanPWMWing;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BD761A4;
+Reference = U3;
+ValeurCmp = ADAFRUIT_POWERBOOST_500;
+IdModule  = PBost500Breakout;
+EndCmp
+
+EndListe
