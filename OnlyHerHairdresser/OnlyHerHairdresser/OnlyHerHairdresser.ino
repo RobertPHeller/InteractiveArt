@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181024.0903>
+//  Last Modified : <181102.2135>
 //
 //  Description	
 //
@@ -42,12 +42,74 @@
 
 static const char rcsid[] = "@(#) : $Id$";
 
-void setup() {
-  // put your setup code here, to run once:
+#include <Adafruit_TCS34725.h>
 
+#define redpin 10
+#define greenpin 6
+#define bluepin 5
+// for a common anode LED, connect the common pin to +5V
+// for common cathode, connect the common to ground
+
+// set to false if using a common cathode LED
+#define commonAnode true
+
+#define swpin 11
+
+// our RGB -> eye-recognized gamma color
+byte gammatable[256];
+
+
+Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+
+
+
+void setup() {
+    // use these three pins to drive LEDs (though driver transistors)
+    pinMode(redpin, OUTPUT);
+    pinMode(greenpin, OUTPUT);
+    pinMode(bluepin, OUTPUT);
+    // sample switch
+    pinMode(swpin,INPUT_PULLUP);
+    // thanks PhilB for this gamma table!
+    // it helps convert RGB colors to what humans see
+    for (int i=0; i<256; i++) {
+        float x = i;
+        x /= 255;
+        x = pow(x, 2.5);
+        x *= 255;
+        
+        if (commonAnode) {
+            gammatable[i] = 255 - x;
+        } else {
+            gammatable[i] = x;      
+        }
+    }
+        
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+    uint16_t clear, red, green, blue;
+    
+    uint16_t count, lows;
+    if (digitalRead(swpin) == LOW) {
+        lows = 1;
+        for (count = 0; count < 3; count++) {
+            lows += (digitalRead(swpin) == LOW)?1:0;
+        }
+        if (lows > 2) {
+            tcs.setInterrupt(false);      // turn on LED
+            delay(60);  // takes 50ms to read 
+            tcs.getRawData(&red, &green, &blue, &clear);
+            tcs.setInterrupt(true);  // turn off LED
+            uint32_t sum = clear;
+            float r, g, b;
+            r = red; r /= sum;
+            g = green; g /= sum;
+            b = blue; b /= sum;
+            r *= 256; g *= 256; b *= 256;
+            analogWrite(redpin, gammatable[(int)r]);
+            analogWrite(greenpin, gammatable[(int)g]);
+            analogWrite(bluepin, gammatable[(int)b]);
+        }
+    }
 }
