@@ -1,0 +1,101 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Fri 02 Nov 2018 21:06:52 EDT
+
+BeginCmp
+TimeStamp = /5BDCB8B2;
+Reference = P1;
+ValeurCmp = TCS34725  Breakout;
+IdModule  = PIN_ARRAY-7X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCEE1A;
+Reference = P2;
+ValeurCmp = RGB LEDS;
+IdModule  = PIN_ARRAY_4x1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCF493;
+Reference = P3;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCF445;
+Reference = P4;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCF4E2;
+Reference = P5;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBDEA;
+Reference = Q1;
+ValeurCmp = MPQ3904;
+IdModule  = DIP-14__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBE8C;
+Reference = R1;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBFCC;
+Reference = R2;
+ValeurCmp = 45 Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBE37;
+Reference = R3;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBFDB;
+Reference = R4;
+ValeurCmp = 45 Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBE28;
+Reference = R5;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCBFEA;
+Reference = R6;
+ValeurCmp = 45 Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCC074;
+Reference = SW1;
+ValeurCmp = SW_PUSH;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDCB892;
+Reference = U1;
+ValeurCmp = FEATHER_M0_EXPRESS;
+IdModule  = AdafruitFeather;
+EndCmp
+
+EndListe
