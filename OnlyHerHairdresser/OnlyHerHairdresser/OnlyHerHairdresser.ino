@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181102.2135>
+//  Last Modified : <181103.0739>
 //
 //  Description	
 //
@@ -47,11 +47,6 @@ static const char rcsid[] = "@(#) : $Id$";
 #define redpin 10
 #define greenpin 6
 #define bluepin 5
-// for a common anode LED, connect the common pin to +5V
-// for common cathode, connect the common to ground
-
-// set to false if using a common cathode LED
-#define commonAnode true
 
 #define swpin 11
 
@@ -78,11 +73,7 @@ void setup() {
         x = pow(x, 2.5);
         x *= 255;
         
-        if (commonAnode) {
-            gammatable[i] = 255 - x;
-        } else {
-            gammatable[i] = x;      
-        }
+        gammatable[i] = x;      
     }
         
 }
