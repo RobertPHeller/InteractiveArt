@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Wed Oct 24 09:00:51 2018
-//  Last Modified : <181024.1643>
+//  Last Modified : <181103.1440>
 //
 //  Description	
 //
@@ -70,18 +70,31 @@ CountryCode CountryTouched () {
 }
 
 void setup() {
-  // put your setup code here, to run once:
-    cap.begin(0x5A);
+    Serial.begin(9600);
+    //while (!Serial) {
+    //    delay(10);
+    //}
+    
+    Serial.println("Hello World startup");
+    if (!cap.begin(0x5A)) {
+        Serial.println("MPR121 not found, check wiring?");
+        while (1);
+    }
+    Serial.println("MPR121 found!");
     pinMode(Backlight,OUTPUT);
     display.begin();
+    display.clearDisplay();
+    display.fillScreen(WHITE);
+    display.setContrast(64);
 }
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
     CountryCode touched = CountryTouched();
     if (touched != NONE) {
+        Serial.print(touched); Serial.println(" touched");
         persist = 255;
+        display.clearDisplay();
         display.fillScreen(WHITE);
         switch (touched) {
         case us:
@@ -124,9 +137,12 @@ void loop() {
             break;
         }
         display.display();
-    } else if (persist > 0) {
+    }
+    if (persist > 0) {
+        Serial.print("Persist is "); Serial.println(persist);
         persist--;
         if (persist == 0) {
+            display.clearDisplay();
             display.fillScreen(WHITE);
             display.display();
             analogWrite(Backlight,0);
