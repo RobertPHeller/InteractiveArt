@@ -1,0 +1,52 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Sun 04 Nov 2018 08:58:11 EST
+
+BeginCmp
+TimeStamp = /5BDEF95A;
+Reference = P1;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF93B;
+Reference = P2;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF97B;
+Reference = P3;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF860;
+Reference = T1;
+ValeurCmp = Throttle;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF86F;
+Reference = T2;
+ValeurCmp = Neopixels;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF841;
+Reference = U1;
+ValeurCmp = ADAFRUIT_POWERBOOST_1000;
+IdModule  = PBost500Breakout;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDEF827;
+Reference = U2;
+ValeurCmp = METROMINI;
+IdModule  = MetroMini;
+EndCmp
+
+EndListe
