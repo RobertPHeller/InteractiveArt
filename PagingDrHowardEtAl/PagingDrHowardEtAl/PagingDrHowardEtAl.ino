@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181105.0812>
+//  Last Modified : <181105.1028>
 //
 //  Description	
 //
@@ -51,6 +51,8 @@ const int PULSE_INPUT = A0;
 
 PulseSensorPlayground pulseSensor;
 
+Adafruit_7segment bpmDisplay;
+Adafruit_24bargraph pulseBar;
 
 
 void setup() {
@@ -64,10 +66,23 @@ void setup() {
             delay(50);
         }
     }
-    
+    bpmDisplay.begin(0x70);
+    pulseBar.begin(0x71);
+    bpmDisplay.print(0,DEC);
+    bpmDisplay.writeDisplay();
+    pulseBar.setBar(23,LED_OFF);
+    pulseBar.writeDisplay();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+    uint16_t sample;
+    uint16_t bpm;
+    
+    delay(20);
+    sample = pulseSensor.getLatestSample();
+    pulseBar.setBar((int)((sample / 1024.0)*23),LED_GREEN);
+    pulseBar.writeDisplay();
+    bpm = pulseSensor.getBeatsPerMinute();
+    bpmDisplay.print(bpm,DEC);
+    bpmDisplay.writeDisplay();
 }
