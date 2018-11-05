@@ -1,0 +1,66 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Sun 04 Nov 2018 13:38:56 EST
+
+BeginCmp
+TimeStamp = /5BDF3D7A;
+Reference = P1;
+ValeurCmp = LDR1;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3D5C;
+Reference = P2;
+ValeurCmp = LDR2;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3D6B;
+Reference = P3;
+ValeurCmp = LDR3;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3C68;
+Reference = P4;
+ValeurCmp = Servo 1;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3C77;
+Reference = P5;
+ValeurCmp = Servo 2;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3DE5;
+Reference = R1;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3E03;
+Reference = R2;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3DF4;
+Reference = R3;
+ValeurCmp = 1K Ohms;
+IdModule  = R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BDF3C2F;
+Reference = U1;
+ValeurCmp = ITSYBITSY;
+IdModule  = ItsyBitsy;
+EndCmp
+
+EndListe
