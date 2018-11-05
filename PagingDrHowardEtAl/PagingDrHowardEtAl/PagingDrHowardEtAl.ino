@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181024.0904>
+//  Last Modified : <181105.0812>
 //
 //  Description	
 //
@@ -42,9 +42,29 @@
 
 static const char rcsid[] = "@(#) : $Id$";
 
-void setup() {
-  // put your setup code here, to run once:
+#define USE_ARDUINO_INTERRUPTS true
+#include <PulseSensorPlayground.h>
+#include <Adafruit_LEDBackpack.h>
 
+const int PULSE_INPUT = A0;
+
+
+PulseSensorPlayground pulseSensor;
+
+
+
+void setup() {
+    pulseSensor.analogInput(PULSE_INPUT);
+    if (!pulseSensor.begin()) {
+        for(;;) {
+            // Flash the led to show things didn't work.
+            digitalWrite(13, LOW);
+            delay(50);
+            digitalWrite(13, HIGH);
+            delay(50);
+        }
+    }
+    
 }
 
 void loop() {

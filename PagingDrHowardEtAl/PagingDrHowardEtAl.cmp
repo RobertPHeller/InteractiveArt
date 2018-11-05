@@ -1,0 +1,31 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Mon 05 Nov 2018 09:34:11 EST
+
+BeginCmp
+TimeStamp = /5BE04B98;
+Reference = P1;
+ValeurCmp = Pulse Playground;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BE05043;
+Reference = P2;
+ValeurCmp = 7 segment backpack;
+IdModule  = PIN_ARRAY_5x1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BE04C5D;
+Reference = P3;
+ValeurCmp = Bargraph Backpack;
+IdModule  = PIN_ARRAY_4x1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5BE053A3;
+Reference = U1;
+ValeurCmp = ITSYBITSY;
+IdModule  = ItsyBitsy;
+EndCmp
+
+EndListe

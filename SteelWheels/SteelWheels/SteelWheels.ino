@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181104.0954>
+//  Last Modified : <181105.0800>
 //
 //  Description	
 //
@@ -111,6 +111,7 @@ void clearSmoke()
     }
 }
 
+
 void setup() {
     strip.begin();
     wheelInit(0,SmallWheels); 
@@ -124,7 +125,7 @@ void setup() {
 
 void loop() {
     uint16_t ithrottle = analogRead(ThrottlePin);
-    cyclecount = (int)(((4096-ithrottle)/4096.0)*MAXCYCLE);
+    cyclecount = (int)(((1024-ithrottle)/1024.0)*MAXCYCLE);
     icycle--;
     if (icycle == 0) {
         if (ithrottle > 0) {
