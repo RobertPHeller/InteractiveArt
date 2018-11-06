@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181105.0800>
+//  Last Modified : <181105.1624>
 //
 //  Description	
 //
@@ -114,6 +114,10 @@ void clearSmoke()
 
 void setup() {
     strip.begin();
+    cyclecount = MAXCYCLE;
+    icycle = MAXCYCLE;
+    iphase = 0;
+    iwheelColor = 0;
     wheelInit(0,SmallWheels); 
     wheelInit(SmallWheels,SmallWheels);
     wheelInit(SmallWheels*2,LargeWheels);
