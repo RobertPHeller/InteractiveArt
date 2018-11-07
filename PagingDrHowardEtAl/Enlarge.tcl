@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Wed Nov 7 11:02:15 2018
-#  Last Modified : <181107.1137>
+#  Last Modified : <181107.1337>
 #
 #  Description	
 #
@@ -44,7 +44,10 @@
 package require Tk
 package require Img
 
-set Stooges [image create photo -file {The-Three-Stooges-1930s-THE-THREE-STOOGES-1930s-Original-Prop-MALLET-Hammer-3-3.jpg}]
+set inputImageFile [lindex $::argv 0]
+set outputBase [lindex $::argv 1]
+
+set Stooges [image create photo -file $inputImageFile]
 
 set width [image width $Stooges];# pixels
 set height [image height $Stooges];# pixels
@@ -71,12 +74,14 @@ pack [canvas .c -width $width -height $height]
 update idle
 set pageno 0
 
+set pagefiles [list]
+
 for {set py 0} {$py < $totalheight} {incr py 8} {
     set yoff [expr {int(ceil((double($py)/double($totalheight))*$height))}]
     for {set px 0} {$px < $totalwidth} {set px [expr {$px + 10.5}]} {
         set xoff [expr {int(ceil((double($px)/double($totalwidth))*$width))}]
         incr pageno
-        .c postscript -file PagingDrHowardEtAl-Page$pageno.ps \
+        .c postscript -file ${outputBase}-Page${pageno}.ps \
               -height $impageheight \
               -width  $impagewidth \
               -x      $xoff \
@@ -86,6 +91,8 @@ for {set py 0} {$py < $totalheight} {incr py 8} {
               -pagewidth $pagewidth \
               -pagex .25i -pagey .25i \
               -rotate true
+        lappend pagefiles ${outputBase}-Page${pageno}.ps
     }
 }
+eval [list exec [auto_execok psmerge] -o${outputBase}-allpages.ps] $pagefiles
 exit
