@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Tue Nov 6 13:24:15 2018
-#  Last Modified : <181106.2224>
+#  Last Modified : <181107.1051>
 #
 #  Description	
 #
@@ -46,6 +46,7 @@ package require pdf4tcl
 
 snit::integer uint -min 0
 snit::integer uintnz -min 1
+snit::double fraction -min 0 -max 1
 
 snit::type Window {
     option -xpos -default 0 -type snit::double -readonly true
@@ -98,18 +99,20 @@ snit::type Building {
     option -xpos  -default 0 -type uint -readonly true
     option -width -default 1 -type uintnz -readonly true
     option -height -default 1 -type uintnz -readonly true
+    option -litwindow -default .95 -type fraction -readonly true
     variable windows [list]
     constructor {args} {
         $self configurelist $args
         $self generateWindows
     }
     method generateWindows {} {
+        set litfract [$self cget -litwindow]
         set wy .25
         while {($wy + .25) < [$self cget -height]} {
             set wx .25
             while {($wx + .25) < [$self cget -width]} {
                 lappend windows [Window create %AUTO% -xpos $wx -ypos $wy \
-                                     -lit [expr {rand() > .95}]]
+                                     -lit [expr {rand() > $litfract}]]
                 set wx [expr {$wx + .25}]
             }
             set wy [expr {$wy + .25}]
@@ -165,6 +168,7 @@ snit::type CityScape {
     component pdf
     delegate option -outputfile to pdf as -file
     option -seed -type uint -default 0
+    option -litwindow -default .95 -type fraction -readonly true
     constructor {args} {
         #puts stderr "*** $type create $self $args"
         set pdf [::pdf4tcl::new %AUTO% -file [from args -outputfile] \
@@ -172,11 +176,13 @@ snit::type CityScape {
                  -landscape true -orient false]
         #puts stderr "*** $type create $self $args: pdf = $pdf"
         $self configurelist $args
+        $self generateBuildings
     }
     method generateBuildings {} {
         #puts stderr "*** $self generateBuildings $seed"
         expr {srand([$self cget -seed])}
         set buildingX 0
+        set litwindow [$self cget -litwindow]
         while {($buildingX+$maxBuildingWidth) < $totalWidth} {
             #puts stderr "*** $self generateBuildings: buildingX = $buildingX"
             set buildingHeight [expr {1+int(rand()*($maxBuildingHeight-1))}]
@@ -184,7 +190,8 @@ snit::type CityScape {
             lappend buildingList [Building create %AUTO% \
                                   -xpos $buildingX \
                                   -width $buildingWidth \
-                                  -height $buildingHeight]
+                                  -height $buildingHeight \
+                                  -litwindow $litwindow]
             incr buildingX $buildingWidth
         }
         if {$buildingX < $totalWidth} {
@@ -217,6 +224,5 @@ snit::type CityScape {
 
 
 set object [CityScape newFromArgv %AUTO% $::argv]
-$object generateBuildings 
 $object drawBuildings
 $object destroy
