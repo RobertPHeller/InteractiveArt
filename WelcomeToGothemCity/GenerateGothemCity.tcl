@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Tue Nov 6 13:24:15 2018
-#  Last Modified : <181106.1701>
+#  Last Modified : <181106.2224>
 #
 #  Description	
 #
@@ -164,6 +164,7 @@ snit::type CityScape {
     variable buildingList [list]
     component pdf
     delegate option -outputfile to pdf as -file
+    option -seed -type uint -default 0
     constructor {args} {
         #puts stderr "*** $type create $self $args"
         set pdf [::pdf4tcl::new %AUTO% -file [from args -outputfile] \
@@ -172,9 +173,9 @@ snit::type CityScape {
         #puts stderr "*** $type create $self $args: pdf = $pdf"
         $self configurelist $args
     }
-    method generateBuildings {{seed 0}} {
+    method generateBuildings {} {
         #puts stderr "*** $self generateBuildings $seed"
-        expr {srand($seed)}
+        expr {srand([$self cget -seed])}
         set buildingX 0
         while {($buildingX+$maxBuildingWidth) < $totalWidth} {
             #puts stderr "*** $self generateBuildings: buildingX = $buildingX"
@@ -205,11 +206,17 @@ snit::type CityScape {
                 }
             }
         }
+    }
+    destructor {
         $pdf destroy
+    }
+    typemethod newFromArgv {name arglist} {
+        return [eval [list $type create $name] $arglist]
     }
 }
 
-set object [CityScape create %AUTO% -outputfile test.pdf]
-$object generateBuildings [clock scan now]
-$object drawBuildings
 
+set object [CityScape newFromArgv %AUTO% $::argv]
+$object generateBuildings 
+$object drawBuildings
+$object destroy
