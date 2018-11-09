@@ -32,7 +32,7 @@ LIBS:valves
 LIBS:adafruit_breakouts
 LIBS:feather_m0_express
 LIBS:metromini
-LIBS:Hello_World-cache
+LIBS:HelloWorld-cache
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268

@@ -1,6 +1,6 @@
 (export (version D)
   (design
-    (source /home/heller/InteractiveArt/Hello_World/Hello_World.sch)
+    (source /home/heller/InteractiveArt/HelloWorld/HelloWorld.sch)
     (date "Wed 24 Oct 2018 11:12:21 EDT")
     (tool "eeschema (2013-june-11)-stable"))
   (components
