@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Thu Nov 8 19:44:29 2018
-#  Last Modified : <181110.0856>
+#  Last Modified : <181110.1425>
 #
 #  Description	
 #
@@ -61,8 +61,14 @@ WRITEUPQCODES = InteractiveArtonGitHub.png \
 	SprocketFactory/SprocketFactoryonGitHub.png \
 	SteelWheels/SteelWheelsonGitHub.png \
 	WelcomeToGothemCity/WelcomeToGothemCityonGitHub.png \
-	WhyDidTheChicken/WhyDidTheChickenonGitHub.png adafruitQR.png
-	
+	WhyDidTheChicken/WhyDidTheChickenonGitHub.png adafruitQR.png \
+	HelloWorld/mpr121-12-key-capacitive-touch-sensorQR.png \
+	HelloWorld/nokia-5110-3310-monochrome-lcdQR.png \
+	WelcomeToGothemCity/distance-measurement-ultrasound-hcsr04QR.png \
+	OnlyHerHairdresser/fiber-optic-pixie-princess-skirtQR.png \
+	OnlyHerHairdresser/adafruit-color-sensorsQR.png \
+	WhyDidTheChicken/bi-color-8x8-matrixQR.png \
+	AndoidsDream/trinket-modded-stuffed-animalQR.png	
 
 all: InteractiveArtWriteups.pdf
 
