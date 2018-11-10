@@ -53,7 +53,7 @@ LibName33=/home/heller/InteractiveArt/metromini
 LibName34=/home/heller/InteractiveArt/itsybitsy
 [pcbnew]
 version=1
-LastNetListRead=AndoidsDream.net
+LastNetListRead=AndroidsDream.net
 UseCmpFile=1
 PadDrill="    3.500000"
 PadDrillOvalY="    3.500000"

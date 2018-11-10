@@ -1,6 +1,6 @@
 (export (version D)
   (design
-    (source /home/heller/InteractiveArt/AndoidsDream/AndoidsDream.sch)
+    (source /home/heller/InteractiveArt/AndroidsDream/AndroidsDream.sch)
     (date "Sun 04 Nov 2018 13:38:08 EST")
     (tool "eeschema (2013-june-11)-stable"))
   (components

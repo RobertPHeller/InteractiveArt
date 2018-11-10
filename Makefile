@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Thu Nov 8 19:44:29 2018
-#  Last Modified : <181110.1425>
+#  Last Modified : <181110.1427>
 #
 #  Description	
 #
@@ -44,7 +44,7 @@
 
 
 PDFLATEX = /usr/bin/pdflatex
-WRITEUPSTEX = InteractiveArtWriteups.tex AndoidsDream/AndoidsDream.tex \
+WRITEUPSTEX = InteractiveArtWriteups.tex AndroidsDream/AndroidsDream.tex \
 		HelloWorld/HelloWorld.tex \
 		OnlyHerHairdresser/OnlyHerHairdresser.tex \
 		PagingDrHowardEtAl/PagingDrHowardEtAl.tex \
@@ -54,7 +54,7 @@ WRITEUPSTEX = InteractiveArtWriteups.tex AndoidsDream/AndoidsDream.tex \
 		WhyDidTheChicken/WhyDidTheChicken.tex
 
 WRITEUPQCODES = InteractiveArtonGitHub.png \
-	AndoidsDream/AndoidsDreamonGitHub.png \
+	AndroidsDream/AndroidsDreamonGitHub.png \
 	HelloWorld/HelloWorldonGitHub.png \
 	OnlyHerHairdresser/OnlyHerHairdresseronGitHub.png \
 	PagingDrHowardEtAl/PagingDrHowardEtAlonGitHub.png \
@@ -68,7 +68,7 @@ WRITEUPQCODES = InteractiveArtonGitHub.png \
 	OnlyHerHairdresser/fiber-optic-pixie-princess-skirtQR.png \
 	OnlyHerHairdresser/adafruit-color-sensorsQR.png \
 	WhyDidTheChicken/bi-color-8x8-matrixQR.png \
-	AndoidsDream/trinket-modded-stuffed-animalQR.png	
+	AndroidsDream/trinket-modded-stuffed-animalQR.png	
 
 all: InteractiveArtWriteups.pdf
 

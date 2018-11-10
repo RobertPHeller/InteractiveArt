@@ -33,7 +33,7 @@ LIBS:adafruit_breakouts
 LIBS:feather_m0_express
 LIBS:metromini
 LIBS:itsybitsy
-LIBS:AndoidsDream-cache
+LIBS:AndroidsDream-cache
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268
