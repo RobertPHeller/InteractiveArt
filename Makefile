@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Thu Nov 8 19:44:29 2018
-#  Last Modified : <181110.1427>
+#  Last Modified : <181110.1645>
 #
 #  Description	
 #
@@ -68,7 +68,12 @@ WRITEUPQCODES = InteractiveArtonGitHub.png \
 	OnlyHerHairdresser/fiber-optic-pixie-princess-skirtQR.png \
 	OnlyHerHairdresser/adafruit-color-sensorsQR.png \
 	WhyDidTheChicken/bi-color-8x8-matrixQR.png \
-	AndroidsDream/trinket-modded-stuffed-animalQR.png	
+	AndroidsDream/trinket-modded-stuffed-animalQR.png \
+	PagingDrHowardEtAl/super-awesome-sylvia-builds-a-pulse-sensor-pendantQR.png \
+	PagingDrHowardEtAl/adafruit-led-backpackQR.png \
+	SprocketFactory/pwm-or-servo-featherwingQR.png \
+	SteelWheels/adafruit-neopixel-uberguideQR.png
+	
 
 all: InteractiveArtWriteups.pdf
 
