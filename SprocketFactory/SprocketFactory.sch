@@ -39,7 +39,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "29 oct 2018"
+Date "11 nov 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -263,4 +263,6 @@ Wire Wire Line
 	7200 2350 7350 2350
 Connection ~ 7350 2550
 Connection ~ 7500 750 
+Text Notes 2550 3500 0    60   ~ 0
+U1 (Feather M0 Express) and U2 (8-channel PWM/Servo FeatherWing)\nare stacked.  The 8 servos are not shown, but are connected to the \nservo headers on the 8-channel PWM/Servo FeatherWing.  U2 has \nconnect points for all I/O and power pins and these holes are used to \nconnect the Power Boost 1000c and the Start and Stop switches.  The\nbattery is plugged into the Power Boost and not the Feather, since the\nServos can be power hungry and want all of 5V to work well.
 $EndSCHEMATC

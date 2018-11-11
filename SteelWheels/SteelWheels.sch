@@ -40,7 +40,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "4 nov 2018"
+Date "11 nov 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -263,4 +263,8 @@ Wire Wire Line
 	5350 2350 5350 2700
 Wire Wire Line
 	5350 2700 5800 2700
+Text Notes 6300 1700 0    60   ~ 0
+Throttle, a 10K slide pot. 
+Text Notes 6350 2650 0    60   ~ 0
+Neopixels: the two small rings (small wheels), \nthe two large rings (large wheels), and \nthe 1/4 segment giant ring (smoke).
 $EndSCHEMATC

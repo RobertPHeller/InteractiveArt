@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181105.1028>
+//  Last Modified : <181111.1509>
 //
 //  Description	
 //
@@ -46,18 +46,30 @@ static const char rcsid[] = "@(#) : $Id$";
 #include <PulseSensorPlayground.h>
 #include <Adafruit_LEDBackpack.h>
 
+// Pulse input on A0
 const int PULSE_INPUT = A0;
 
-
+// Pulse sensor
 PulseSensorPlayground pulseSensor;
 
+// LED Backpacks:
+// Beats per minute
 Adafruit_7segment bpmDisplay;
+// Graphical pulse
 Adafruit_24bargraph pulseBar;
 
 
+//****************************************
+//* Setup: Initialize everything         *
+//*   Bind pulse input to a pulse sensor *
+//*   Wait for pulse sensor to init and  *
+//*   settle.                            *
+//*   Start up LED Backpack displays.    *
+//*   Initialize displays to a zero state*
+//****************************************
 void setup() {
-    pulseSensor.analogInput(PULSE_INPUT);
-    if (!pulseSensor.begin()) {
+    pulseSensor.analogInput(PULSE_INPUT);  // Connect sensor
+    if (!pulseSensor.begin()) {            // Start sensing
         for(;;) {
             // Flash the led to show things didn't work.
             digitalWrite(13, LOW);
@@ -66,23 +78,31 @@ void setup() {
             delay(50);
         }
     }
-    bpmDisplay.begin(0x70);
-    pulseBar.begin(0x71);
-    bpmDisplay.print(0,DEC);
+    bpmDisplay.begin(0x70);     // Connect to Beats per Minute display
+    pulseBar.begin(0x71);       // Connect to Graphical pulse display
+    bpmDisplay.print(0,DEC);    // Display zero Beats per Minute
     bpmDisplay.writeDisplay();
-    pulseBar.setBar(23,LED_OFF);
+    pulseBar.setBar(23,LED_OFF); // Display no pulse
     pulseBar.writeDisplay();
 }
 
+//****************************************
+//* Main loop:                           *
+//*    Delay to get a reading            *
+//*    Get a sample, display sample on   *
+//*    bargraph.                         *
+//*    Get BPM, display on Beats per     *
+//*    Minute display.                   *
+//****************************************
 void loop() {
     uint16_t sample;
     uint16_t bpm;
     
     delay(20);
-    sample = pulseSensor.getLatestSample();
-    pulseBar.setBar((int)((sample / 1024.0)*23),LED_GREEN);
+    sample = pulseSensor.getLatestSample(); // Get sample
+    pulseBar.setBar((int)((sample / 1023.0)*23),LED_GREEN); // Display sample
     pulseBar.writeDisplay();
-    bpm = pulseSensor.getBeatsPerMinute();
-    bpmDisplay.print(bpm,DEC);
+    bpm = pulseSensor.getBeatsPerMinute(); // Get BPM
+    bpmDisplay.print(bpm,DEC);             // Display BPM
     bpmDisplay.writeDisplay();
 }

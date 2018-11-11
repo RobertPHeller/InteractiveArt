@@ -40,7 +40,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "5 nov 2018"
+Date "11 nov 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -190,4 +190,10 @@ Wire Wire Line
 	2800 750  2800 1700
 Wire Wire Line
 	2800 1700 2950 1700
+Text Notes 1600 3050 0    60   ~ 0
+Pulse\nSensor
+Text Notes 5450 2400 0    60   ~ 0
+Beats per Minute\nDisplay
+Text Notes 5450 3700 0    60   ~ 0
+Graphical Pulse\nDisplay
 $EndSCHEMATC

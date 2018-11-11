@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181104.2029>
+//  Last Modified : <181111.1411>
 //
 //  Description	
 //
@@ -44,21 +44,31 @@ static const char rcsid[] = "@(#) : $Id$";
 
 #include <Servo.h>
 
+// Servo object instances
 Servo head;
 Servo tail;
 
+// Servo positions
 int16_t headPosition;
 int16_t tailPosition;
 
+// Servo pin numbers
 #define HeadServo 10
 #define TailServo 9
 
+// LDR inputs
 #define HeadLDR A0
 #define BackLDR A1
 #define TailLDR A2
 
+// Sleeping flag
 bool sleeping;
 
+//*******************************************
+//* Set things up:                          *
+//* Attach and initialize servos            *
+//* Enter sleep mode                        *
+//*******************************************
 void setup() {
     head.attach(HeadServo);
     tail.attach(TailServo);
@@ -69,61 +79,82 @@ void setup() {
     sleeping = true;
 }
 
+//*******************************************
+//* Main loop:                              *
+//* If sleeping:                            *
+//*    Check light levels and if it is light*
+//*    exit sleep mode (wake up), raising   *
+//*    head half way and raise tail half way*
+//*    else if it is still dark, delay for  *
+//*    one whole minute.                    *
+//* Else if not sleeping:                   *
+//*    If all LDRs are dark, lower head and *
+//*    tail and enter sleep mode.           *
+//*    Otherwise, if head LDR is dark raise *
+//*    head and if head LDR is light return *
+//*    head to "normal" position.  If tail  *
+//*    LDR is dark, wag tail.               *
+//*******************************************
 void loop() {
-    uint16_t head_reading = analogRead(HeadLDR);
-    uint16_t back_reading = analogRead(BackLDR);
-    uint16_t tail_reading = analogRead(TailLDR);
+    uint16_t head_reading = analogRead(HeadLDR); // Read head LDR
+    uint16_t back_reading = analogRead(BackLDR); // Read back LDR
+    uint16_t tail_reading = analogRead(TailLDR); // Read tail LDR
     
+    // Sleeping?
     if (sleeping) {
+        // Here comes the sun...
         if (head_reading > 800 ||
             back_reading > 800 ||
             tail_reading > 800) {
-            sleeping = false;
-            headPosition = 90;
+            sleeping = false; // Wakey wakey...
+            headPosition = 90; // head up
             head.write(headPosition);
-            tailPosition = 90;
+            tailPosition = 90; // tail up
             tail.write(tailPosition);
         } else {
-            delay(60000);
+            delay(60000); // zzzzzzzzzzzzzzzzz...
         }
     } else {
+        // Nightfall?
         if (head_reading < 400 &&
             back_reading < 400 &&
             tail_reading < 400) {
-            headPosition = 0;
-            tailPosition = 0;
+            headPosition = 0; // Head down
+            tailPosition = 0; // Tail down
             head.write(headPosition);
             tail.write(tailPosition);
-            sleeping = true;
+            sleeping = true; // Nightie night...
         } else {
+            // Petting head?
             if (head_reading < 800) {
-                headPosition = 180;
+                headPosition = 180; // Head up
                 head.write(headPosition);
-            } else if (headPosition != 0) {
-                headPosition = 0;
+            } else if (headPosition != 90) {
+                headPosition = 90; // Head lowered
                 head.write(headPosition);
             }
+            // Petting tail?
             if (tail_reading < 800) {
-                tailPosition = 180;
+                tailPosition = 180; // wig
                 tail.write(tailPosition);
                 delay(20);
-                tailPosition = 0;
+                tailPosition = 90; // wag
                 tail.write(tailPosition);
                 delay(20);
-                tailPosition = 180;
+                tailPosition = 180; // wig
                 tail.write(tailPosition);
                 delay(20);
-                tailPosition = 0;
+                tailPosition = 90; // wag
                 tail.write(tailPosition);
                 delay(20);
-                tailPosition = 180;
+                tailPosition = 180; // wig
                 tail.write(tailPosition);
                 delay(20);
-                tailPosition = 0;
+                tailPosition = 90; // wag
                 tail.write(tailPosition);
                 delay(20);
             }
         }
-        delay(1000);
+        delay(1000); // Check again in a second.
     }
 }

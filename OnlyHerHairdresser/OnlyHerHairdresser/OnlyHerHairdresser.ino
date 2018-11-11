@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181103.0739>
+//  Last Modified : <181111.1546>
 //
 //  Description	
 //
@@ -44,21 +44,28 @@ static const char rcsid[] = "@(#) : $Id$";
 
 #include <Adafruit_TCS34725.h>
 
+// LED Output pins
 #define redpin 10
 #define greenpin 6
 #define bluepin 5
 
+// Sample switch input pin
 #define swpin 11
 
 // our RGB -> eye-recognized gamma color
 byte gammatable[256];
 
-
+// Color sensor
 Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
 
 
-
+//****************************************************
+//* Setup: Start the sensor                          *
+//*   Set the I/O Pin modes                          *
+//*   Initialize the gamma table                     *
+//****************************************************
 void setup() {
+    tcs.begin();
     // use these three pins to drive LEDs (though driver transistors)
     pinMode(redpin, OUTPUT);
     pinMode(greenpin, OUTPUT);
@@ -75,29 +82,38 @@ void setup() {
         
         gammatable[i] = x;      
     }
-        
 }
 
+//****************************************************
+//* Main loop:                                       *
+//*   Check and debounce the input switch            *
+//*   If switch is pressed, grab a sample and light  *
+//*   the LEDs with the color read.                  *
+//****************************************************
 void loop() {
     uint16_t clear, red, green, blue;
     
     uint16_t count, lows;
-    if (digitalRead(swpin) == LOW) {
+    if (digitalRead(swpin) == LOW) { // Sample switch pressed?
+        // Debounce it...
         lows = 1;
         for (count = 0; count < 3; count++) {
             lows += (digitalRead(swpin) == LOW)?1:0;
         }
         if (lows > 2) {
+            // Debounced -- get sample
             tcs.setInterrupt(false);      // turn on LED
             delay(60);  // takes 50ms to read 
-            tcs.getRawData(&red, &green, &blue, &clear);
+            tcs.getRawData(&red, &green, &blue, &clear); // read sample
             tcs.setInterrupt(true);  // turn off LED
+            // Gamma correct
             uint32_t sum = clear;
             float r, g, b;
             r = red; r /= sum;
             g = green; g /= sum;
             b = blue; b /= sum;
             r *= 256; g *= 256; b *= 256;
+            // Light LEDs
             analogWrite(redpin, gammatable[(int)r]);
             analogWrite(greenpin, gammatable[(int)g]);
             analogWrite(bluepin, gammatable[(int)b]);

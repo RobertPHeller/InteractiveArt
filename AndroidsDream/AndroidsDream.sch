@@ -40,7 +40,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "4 nov 2018"
+Date "11 nov 2018"
 Rev ""
 Comp ""
 Comment1 ""
@@ -271,4 +271,14 @@ Wire Wire Line
 Wire Wire Line
 	1850 3100 1850 3300
 Connection ~ 1800 3300
+Text Notes 6200 2350 0    60   ~ 0
+Head Servo\ncontrols head movement
+Text Notes 6200 2950 0    60   ~ 0
+Tail Servo\ncontrols tail movement
+Text Notes 550  2100 0    60   ~ 0
+Head LDR\nSenses Head \nPetting
+Text Notes 550  2600 0    60   ~ 0
+Back LDR\nHelps to \ndetect \nnighttime
+Text Notes 550  3150 0    60   ~ 0
+Tail LDR\nSenses Tail\nPetting
 $EndSCHEMATC
