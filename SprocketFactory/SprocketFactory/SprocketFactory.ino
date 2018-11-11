@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181111.1526>
+//  Last Modified : <181111.1557>
 //
 //  Description	
 //
@@ -92,6 +92,7 @@ void loop() {
             // stop button pressed -- debounce it.
             lows = 1;
             for (count = 0; count < 3; count++) {
+                delay(30);
                 lows += (digitalRead(StopButton) == LOW)?1:0;
             }
             if (lows > 2) {
@@ -105,6 +106,7 @@ void loop() {
             // start button pressed -- debounce it.
             lows = 1;
             for (count = 0; count < 3; count++) {
+                delay(30);
                 lows += (digitalRead(StartButton) == LOW)?1:0;
             }
             if (lows > 2) {

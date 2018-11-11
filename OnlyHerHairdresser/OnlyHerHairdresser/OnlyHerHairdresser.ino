@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181111.1546>
+//  Last Modified : <181111.1556>
 //
 //  Description	
 //
@@ -98,6 +98,7 @@ void loop() {
         // Debounce it...
         lows = 1;
         for (count = 0; count < 3; count++) {
+            delay(30);
             lows += (digitalRead(swpin) == LOW)?1:0;
         }
         if (lows > 2) {
