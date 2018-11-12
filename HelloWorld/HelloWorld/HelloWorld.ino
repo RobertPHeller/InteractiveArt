@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Wed Oct 24 09:00:51 2018
-//  Last Modified : <181103.1440>
+//  Last Modified : <181111.1930>
 //
 //  Description	
 //
@@ -47,11 +47,17 @@
 #include <HelloWorld.h>
 static const char rcsid[] = "@(#) : $Id$";
 
+// Touch sensor breakout
 Adafruit_MPR121 cap = Adafruit_MPR121();
+// Small monochrome display
 Adafruit_PCD8544 display = Adafruit_PCD8544(11,10,6);
-int Backlight = 5;
-int persist = 0;
 
+int Backlight = 5; // Backlight LED
+int persist = 0;   // Persistance value
+
+//**********************************************************
+//* Map touch sensors to countries                         *
+//**********************************************************
 CountryCode CountryTouched () {
     int touched = cap.touched();
     if (touched & (1 << 11)) return us;
@@ -69,6 +75,10 @@ CountryCode CountryTouched () {
     else return NONE;
 }
 
+//**********************************************************
+//* Setup: Connect to touch sensor, set pinmode of the     *
+//*        backlight, clear display.                       *
+//**********************************************************
 void setup() {
     Serial.begin(9600);
     //while (!Serial) {
@@ -89,13 +99,22 @@ void setup() {
 }
 
 
+//***********************************************************
+//* Main loop: read touch sensor and get the country touched*
+//*            If a country touched, display Hello World in *
+//*            that country's language.                     *
+//***********************************************************
 void loop() {
-    CountryCode touched = CountryTouched();
+    // Read sensor and map to a country
+    CountryCode touched = CountryTouched(); 
+    // If an actual country was touched, light up the display and display
+    // the proper graphics for Hello World in the selected language.
     if (touched != NONE) {
         Serial.print(touched); Serial.println(" touched");
         persist = 255;
         display.clearDisplay();
         display.fillScreen(WHITE);
+        // Fan out on selected language
         switch (touched) {
         case us:
             display.drawXBitmap(0,0,(const uint8_t*) us_bits,us_width,us_height,BLACK);
@@ -136,17 +155,22 @@ void loop() {
         default:
             break;
         }
+        // Write to display and show it.
         display.display();
     }
+    // Persistance countdown.  Fade the display out from full brightness to 
+    // dark
     if (persist > 0) {
         Serial.print("Persist is "); Serial.println(persist);
         persist--;
         if (persist == 0) {
+            // Full dark, clear display.
             display.clearDisplay();
             display.fillScreen(WHITE);
             display.display();
             analogWrite(Backlight,0);
         } else {
+            // Update backlight.
             analogWrite(Backlight,persist);
         }
     }

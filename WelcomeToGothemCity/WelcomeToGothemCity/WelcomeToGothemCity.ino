@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181026.1415>
+//  Last Modified : <181111.2009>
 //
 //  Description	
 //
@@ -42,19 +42,26 @@
 
 static const char rcsid[] = "@(#) : $Id$";
 
+// SR04 Data pins
 const int TRIG_PIN = 8;
 const int ECHO_PIN = 7;
+// LEDs pin
 const int LEDS     = 5;
 
 // Anything over 400 cm (23200 us pulse) is "out of range"
 const unsigned int MAX_DIST = 23200;
 
+// Distance thresholds
 const float CLOSE_INCHES = 2.5;
 const float NEAR_INCHES  = 5.0;
 const float FAR_INCHES   = 10.0;
 const float VERY_FAR_INCHES = 15.0;
 const float DISTANT_INCHES  = 30.0;
 
+
+//**************************************************************
+//* Setup: set pinmodes, turn off LEDs                         *
+//**************************************************************
 void setup() {
     // The Trigger pin will tell the sensor to range find
     pinMode(TRIG_PIN, OUTPUT);
@@ -65,6 +72,12 @@ void setup() {
     analogWrite(LEDS,0);
 }
 
+//**************************************************************
+//* Main Loop:  Trigger the sensor and retreive a result pulse *
+//*             Compute the pulse width to measure the distance*
+//*             Compare the measured distance to the thresholds*
+//*             and light the LEDs to the selected brightness. *
+//**************************************************************
 void loop() {
     unsigned long t1;
     unsigned long t2;
@@ -92,18 +105,19 @@ void loop() {
     //of sound in air at sea level (~340 m/s).
     inches = pulse_width / 148.0;
     
+    // Measure thresholds and light the LEDs to the brightness called for.
     if (inches < CLOSE_INCHES) {
-        analogWrite(LEDS,255);
+        analogWrite(LEDS,255); // Very close, full brightness
     } else if (inches < NEAR_INCHES) {
-        analogWrite(LEDS,192);
+        analogWrite(LEDS,192); // Pretty near, medium bright
     } else if (inches < FAR_INCHES) {
-        analogWrite(LEDS,128);
+        analogWrite(LEDS,128); // Fairly far, low brightness
     } else if (inches < VERY_FAR_INCHES) {
-        analogWrite(LEDS,64);
+        analogWrite(LEDS,64); // Very far, dim
     } else if (inches < DISTANT_INCHES) {
-        analogWrite(LEDS,32);
+        analogWrite(LEDS,32); // Very, very far very dim
     } else {
-        analogWrite(LEDS,0);
+        analogWrite(LEDS,0);  // Too far, totally dark
     }
-    delay(100);
+    delay(100); // Check again in a 1/10 of a second.
 }
