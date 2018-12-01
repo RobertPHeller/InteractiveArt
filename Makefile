@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Thu Nov 8 19:44:29 2018
-#  Last Modified : <181110.1645>
+#  Last Modified : <181201.1013>
 #
 #  Description	
 #
@@ -72,7 +72,8 @@ WRITEUPQCODES = InteractiveArtonGitHub.png \
 	PagingDrHowardEtAl/super-awesome-sylvia-builds-a-pulse-sensor-pendantQR.png \
 	PagingDrHowardEtAl/adafruit-led-backpackQR.png \
 	SprocketFactory/pwm-or-servo-featherwingQR.png \
-	SteelWheels/adafruit-neopixel-uberguideQR.png
+	SteelWheels/adafruit-neopixel-uberguideQR.png \
+	hellerQR.png
 	
 
 all: InteractiveArtWriteups.pdf
