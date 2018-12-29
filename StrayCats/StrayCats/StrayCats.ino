@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181228.1752>
+//  Last Modified : <181229.1254>
 //
 //  Description	
 //
@@ -204,10 +204,11 @@ uint32_t read32(File f) {
 void setup() {
     SD.begin(CARD_CS);
 #ifdef LEARN
-    Serial .begin(9600);
+    Serial.begin(9600);
     while (!Serial) {
         ; // wait for serial port to connect. Needed for native USB port only
     }
+    Serial.println("Learn Mode...");
     remote.storePulses("VolM",'v');
     remote.storePulses("PlayPause",'p');
     remote.storePulses("VolP",'V');
@@ -234,6 +235,7 @@ void setup() {
     pinMode(Lite,OUTPUT);
     // Use this initializer if you're using a 1.8" TFT
     display.initR(INITR_BLACKTAB);
+    display.setRotation(1); // Check...
 #endif
 }
 
@@ -245,7 +247,7 @@ void loop() {
     if (key < 0) {
         if (brightness > 0) {
             brightness--;
-            analogWrite(Lite,brightness>>4);
+            analogWrite(Lite,brightness);
         }
     } else {
         char imagefile[10];
@@ -253,7 +255,7 @@ void loop() {
         imagefile[6] = key;
         strcpy(&imagefile[7],".bmp");
         bmpDraw(imagefile,0,0);
-        brightness = 1023;
+        brightness = 255;
         analogWrite(Lite,brightness);
     }
     delay(500);
