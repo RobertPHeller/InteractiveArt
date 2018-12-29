@@ -1,0 +1,38 @@
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Thu 27 Dec 2018 18:31:50 EST
+
+BeginCmp
+TimeStamp = /5C25411C;
+Reference = P1;
+ValeurCmp = 1.8 Inch TFT w/card;
+IdModule  = pin_strip_10;
+EndCmp
+
+BeginCmp
+TimeStamp = /5C254310;
+Reference = P2;
+ValeurCmp = IR Sensor;
+IdModule  = PIN_ARRAY_3X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5C2560B8;
+Reference = P3;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5C2560C7;
+Reference = P4;
+ValeurCmp = CONN_1;
+IdModule  = PIN_ARRAY_1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5C254051;
+Reference = U1;
+ValeurCmp = FEATHER_M0_EXPRESS;
+IdModule  = AdafruitFeather;
+EndCmp
+
+EndListe
