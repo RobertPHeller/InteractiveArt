@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Thu Nov 8 19:44:29 2018
-#  Last Modified : <181201.1013>
+#  Last Modified : <181228.2058>
 #
 #  Description	
 #
@@ -51,7 +51,8 @@ WRITEUPSTEX = InteractiveArtWriteups.tex AndroidsDream/AndroidsDream.tex \
 		SprocketFactory/SprocketFactory.tex \
 		SteelWheels/SteelWheels.tex \
 		WelcomeToGothemCity/WelcomeToGothemCity.tex \
-		WhyDidTheChicken/WhyDidTheChicken.tex
+		WhyDidTheChicken/WhyDidTheChicken.tex \
+		StrayCats/StrayCats.tex
 
 WRITEUPQCODES = InteractiveArtonGitHub.png \
 	AndroidsDream/AndroidsDreamonGitHub.png \
