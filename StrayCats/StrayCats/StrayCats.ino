@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181229.1254>
+//  Last Modified : <181229.1757>
 //
 //  Description	
 //
@@ -230,6 +230,7 @@ void setup() {
     remote.storePulses("Seven",'7');
     remote.storePulses("Eight",'8');
     remote.storePulses("Nine",'9');
+    Serial.println("Done");
 #else
     brightness = 0;
     pinMode(Lite,OUTPUT);
