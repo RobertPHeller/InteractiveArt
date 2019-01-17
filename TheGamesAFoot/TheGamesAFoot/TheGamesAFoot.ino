@@ -6,9 +6,9 @@
 //  Revision      : $Revision$
 //  Date          : $Date$
 //  Author        : $Author$
-//  Created By    : $USER_NAME$
-//  Created       : $ASCII_TIME$
-//  Last Modified : <181024.0905>
+//  Created By    : Robert Heller
+//  Created       : Sun Jan 6 15:11:17 2019
+//  Last Modified : <190106.1511>
 //
 //  Description	
 //
@@ -18,7 +18,7 @@
 //	
 /////////////////////////////////////////////////////////////////////////////
 //
-//    Copyright (C) $YEAR$  Robert Heller D/B/A Deepwoods Software
+//    Copyright (C) 2019  Robert Heller D/B/A Deepwoods Software
 //			51 Locke Hill Road
 //			Wendell, MA 01379-9728
 //
@@ -43,11 +43,9 @@
 static const char rcsid[] = "@(#) : $Id$";
 
 void setup() {
-  // put your setup code here, to run once:
-
+    // put your setup code here, to run once:
 }
-
+                
 void loop() {
-  // put your main code here, to run repeatedly:
-
-}
+    // put your main code here, to run repeatedly:
+}    
