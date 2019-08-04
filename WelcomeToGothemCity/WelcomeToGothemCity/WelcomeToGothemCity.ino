@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181111.2009>
+//  Last Modified : <190729.0003>
 //
 //  Description	
 //
@@ -48,6 +48,7 @@ const int ECHO_PIN = 7;
 // LEDs pin
 const int LEDS     = 5;
 
+
 // Anything over 400 cm (23200 us pulse) is "out of range"
 const unsigned int MAX_DIST = 23200;
 
@@ -63,12 +64,15 @@ const float DISTANT_INCHES  = 30.0;
 //* Setup: set pinmodes, turn off LEDs                         *
 //**************************************************************
 void setup() {
+    Serial.begin(9600);
     // The Trigger pin will tell the sensor to range find
     pinMode(TRIG_PIN, OUTPUT);
     pinMode(ECHO_PIN, INPUT);
     digitalWrite(TRIG_PIN, LOW);
     
     pinMode(LEDS, OUTPUT);
+    pinMode(LED_BUILTIN, OUTPUT);
+    //digitalWrite(LEDS,0);
     analogWrite(LEDS,0);
 }
 
@@ -100,23 +104,37 @@ void loop() {
     t2 = micros();
     pulse_width = t2 - t1;
     
+    //Serial.print("*** pulse_width = ");Serial.println(pulse_width);
     // Calculate distance in centimeters and inches. The constants
     // are found in the datasheet, and calculated from the assumed speed 
     //of sound in air at sea level (~340 m/s).
     inches = pulse_width / 148.0;
     
+    //Serial.print("*** inch = ");Serial.println(inches);
     // Measure thresholds and light the LEDs to the brightness called for.
     if (inches < CLOSE_INCHES) {
+        //digitalWrite(LEDS,1);
+        digitalWrite(LED_BUILTIN,1);
+        Serial.println("CLOSE_INCHES");
         analogWrite(LEDS,255); // Very close, full brightness
     } else if (inches < NEAR_INCHES) {
+        //digitalWrite(LEDS,1);
+        digitalWrite(LED_BUILTIN,1);
+        Serial.println("NEAR_INCHES");
         analogWrite(LEDS,192); // Pretty near, medium bright
     } else if (inches < FAR_INCHES) {
+        Serial.println("FAR_INCHES");
         analogWrite(LEDS,128); // Fairly far, low brightness
     } else if (inches < VERY_FAR_INCHES) {
+        Serial.println("VERY_FAR_INCHES");
         analogWrite(LEDS,64); // Very far, dim
     } else if (inches < DISTANT_INCHES) {
+        Serial.println("DISTANT_INCHES");
         analogWrite(LEDS,32); // Very, very far very dim
     } else {
+        Serial.println("Beyond DISTANT_INCHES");
+        //digitalWrite(LEDS,0);
+        digitalWrite(LED_BUILTIN,0);
         analogWrite(LEDS,0);  // Too far, totally dark
     }
     delay(100); // Check again in a 1/10 of a second.
