@@ -82,13 +82,13 @@ F 3 "~" H 5300 2450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text Label 4900 2250 2    60   ~ 0
-D
+SCL
 Text Label 4900 2350 2    60   ~ 0
-C
+SDA
 Text Label 4900 2450 2    60   ~ 0
-+
+GND
 Text Label 4900 2550 2    60   ~ 0
--
++5V
 Text Label 4900 2650 2    60   ~ 0
 IO
 Text Label 4950 3550 2    60   ~ 0
@@ -137,18 +137,12 @@ Wire Wire Line
 Wire Wire Line
 	2700 1850 2950 1850
 Wire Wire Line
-	4900 2250 4650 2250
-Wire Wire Line
-	4650 2250 4650 3650
-Wire Wire Line
 	4650 2700 4400 2700
 Wire Wire Line
 	4650 3650 4950 3650
 Connection ~ 4650 2700
 Wire Wire Line
-	4900 2350 4750 2350
-Wire Wire Line
-	4750 2350 4750 3550
+	4750 2250 4750 3550
 Wire Wire Line
 	4750 2550 4400 2550
 Wire Wire Line
@@ -159,13 +153,6 @@ Wire Wire Line
 Wire Wire Line
 	4550 3750 4550 1200
 Connection ~ 4550 1200
-Wire Wire Line
-	4900 2550 4800 2550
-Wire Wire Line
-	4800 2550 4800 2850
-Wire Wire Line
-	4800 2850 4550 2850
-Connection ~ 4550 2850
 Wire Wire Line
 	4900 2650 4900 3500
 Wire Wire Line
@@ -179,9 +166,7 @@ Wire Wire Line
 	4950 3850 4350 3850
 Connection ~ 4350 3850
 Wire Wire Line
-	4900 2450 4700 2450
-Wire Wire Line
-	4700 2450 4700 750 
+	4700 750  4700 2650
 Wire Wire Line
 	4700 750  2800 750 
 Wire Wire Line
@@ -196,4 +181,19 @@ Wire Wire Line
 	2800 1700 2950 1700
 Wire Wire Line
 	2600 1400 2950 1400
+Wire Wire Line
+	4750 2250 4900 2250
+Wire Wire Line
+	4900 2350 4650 2350
+Wire Wire Line
+	4650 2350 4650 3650
+Wire Wire Line
+	4700 2650 4800 2650
+Wire Wire Line
+	4800 2650 4800 2550
+Wire Wire Line
+	4800 2550 4900 2550
+Wire Wire Line
+	4900 2450 4550 2450
+Connection ~ 4550 2450
 $EndSCHEMATC
