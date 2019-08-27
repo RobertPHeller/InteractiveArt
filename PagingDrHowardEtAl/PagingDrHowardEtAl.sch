@@ -40,7 +40,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "11 nov 2018"
+Date "27 aug 2019"
 Rev ""
 Comp ""
 Comment1 ""
@@ -119,10 +119,6 @@ $EndComp
 Wire Wire Line
 	2400 3000 2600 3000
 Wire Wire Line
-	2600 1400 2600 4500
-Wire Wire Line
-	2600 1400 2950 1400
-Wire Wire Line
 	2400 3200 2500 3200
 Wire Wire Line
 	2500 3200 2500 650 
@@ -157,9 +153,9 @@ Wire Wire Line
 	4750 3550 4950 3550
 Connection ~ 4750 2550
 Wire Wire Line
-	4950 3750 4550 3750
+	4550 3750 4950 3750
 Wire Wire Line
-	4550 3750 4550 1200
+	4550 1200 4550 3750
 Connection ~ 4550 1200
 Wire Wire Line
 	4900 2550 4800 2550
@@ -183,12 +179,6 @@ Connection ~ 4350 3850
 Wire Wire Line
 	4900 2450 4700 2450
 Wire Wire Line
-	4700 2450 4700 750 
-Wire Wire Line
-	4700 750  2800 750 
-Wire Wire Line
-	2800 750  2800 1700
-Wire Wire Line
 	2800 1700 2950 1700
 Text Notes 1600 3050 0    60   ~ 0
 Pulse\nSensor
@@ -196,4 +186,25 @@ Text Notes 5450 2400 0    60   ~ 0
 Beats per Minute\nDisplay
 Text Notes 5450 3700 0    60   ~ 0
 Graphical Pulse\nDisplay
+Wire Wire Line
+	2600 3200 2950 3200
+Connection ~ 2600 3200
+Wire Wire Line
+	2800 650  2800 3400
+Wire Wire Line
+	2800 3400 2950 3400
+Connection ~ 2800 650 
+Connection ~ 2800 1700
+Wire Wire Line
+	2600 4500 2600 3000
+Wire Wire Line
+	4700 2450 4700 800 
+Wire Wire Line
+	4700 800  2850 800 
+Wire Wire Line
+	2850 800  2850 1450
+Wire Wire Line
+	2850 1450 2950 1450
+Wire Wire Line
+	2950 1450 2950 1400
 $EndSCHEMATC
