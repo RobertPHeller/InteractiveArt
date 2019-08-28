@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Mon 05 Nov 2018 09:34:11 EST
+Cmp-Mod V01 Created by CvPcb (2013-june-11)-stable date = Wed 28 Aug 2019 16:23:00 EDT
 
 BeginCmp
 TimeStamp = /5BE04B98;
@@ -22,10 +22,10 @@ IdModule  = PIN_ARRAY_4x1;
 EndCmp
 
 BeginCmp
-TimeStamp = /5BE053A3;
+TimeStamp = /5D66D46F;
 Reference = U1;
-ValeurCmp = ITSYBITSY;
-IdModule  = ItsyBitsy;
+ValeurCmp = UNO;
+IdModule  = UNO;
 EndCmp
 
 EndListe

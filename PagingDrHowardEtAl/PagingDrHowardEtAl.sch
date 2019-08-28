@@ -33,6 +33,7 @@ LIBS:adafruit_breakouts
 LIBS:feather_m0_express
 LIBS:metromini
 LIBS:itsybitsy
+LIBS:uno
 LIBS:PagingDrHowardEtAl-cache
 EELAYER 27 0
 EELAYER END
@@ -40,7 +41,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "27 aug 2019"
+Date "28 aug 2019"
 Rev ""
 Comp ""
 Comment1 ""
@@ -105,72 +106,26 @@ Text Label 2400 3100 0    60   ~ 0
 Pulse
 Text Label 2400 3200 0    60   ~ 0
 GND
-$Comp
-L ITSYBITSY U1
-U 1 1 5BE053A3
-P 3700 2600
-F 0 "U1" H 3700 2900 60  0000 C CNN
-F 1 "ITSYBITSY" H 3650 2200 60  0000 C CNN
-F 2 "~" H 3700 2600 60  0000 C CNN
-F 3 "~" H 3700 2600 60  0000 C CNN
-	1    3700 2600
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	2400 3000 2600 3000
 Wire Wire Line
-	2600 1400 2600 4500
+	2400 3200 4550 3200
 Wire Wire Line
-	2400 3200 2500 3200
-Wire Wire Line
-	2500 3200 2500 650 
-Wire Wire Line
-	2500 650  4650 650 
-Wire Wire Line
-	4650 650  4650 1200
-Wire Wire Line
-	4650 1200 4400 1200
-Wire Wire Line
-	2400 3100 2700 3100
-Wire Wire Line
-	2700 3100 2700 1850
-Wire Wire Line
-	2700 1850 2950 1850
-Wire Wire Line
-	4650 2700 4400 2700
+	2400 3100 4400 3100
 Wire Wire Line
 	4650 3650 4950 3650
-Connection ~ 4650 2700
 Wire Wire Line
 	4750 2250 4750 3550
 Wire Wire Line
-	4750 2550 4400 2550
-Wire Wire Line
 	4750 3550 4950 3550
-Connection ~ 4750 2550
 Wire Wire Line
 	4950 3750 4550 3750
 Wire Wire Line
-	4550 3750 4550 1200
-Connection ~ 4550 1200
+	4900 3500 4900 2550
 Wire Wire Line
-	4900 2650 4900 3500
-Wire Wire Line
-	4900 3500 4350 3500
-Wire Wire Line
-	4350 3500 4350 4500
-Wire Wire Line
-	4350 4500 2600 4500
-Connection ~ 2600 3000
+	2800 3500 4900 3500
 Wire Wire Line
 	4950 3850 4350 3850
-Connection ~ 4350 3850
-Wire Wire Line
-	4700 750  4700 2650
-Wire Wire Line
-	4700 750  2800 750 
-Wire Wire Line
-	2800 750  2800 1700
 Text Notes 1600 3050 0    60   ~ 0
 Pulse\nSensor
 Text Notes 5450 2400 0    60   ~ 0
@@ -178,22 +133,57 @@ Beats per Minute\nDisplay
 Text Notes 5450 3700 0    60   ~ 0
 Graphical Pulse\nDisplay
 Wire Wire Line
-	2800 1700 2950 1700
-Wire Wire Line
-	2600 1400 2950 1400
-Wire Wire Line
 	4750 2250 4900 2250
 Wire Wire Line
 	4900 2350 4650 2350
 Wire Wire Line
 	4650 2350 4650 3650
 Wire Wire Line
-	4700 2650 4800 2650
-Wire Wire Line
-	4800 2650 4800 2550
-Wire Wire Line
-	4800 2550 4900 2550
-Wire Wire Line
 	4900 2450 4550 2450
-Connection ~ 4550 2450
+Connection ~ 4900 2650
+Wire Wire Line
+	4550 2450 4550 3750
+Wire Wire Line
+	4350 3850 4350 3500
+Connection ~ 4550 3200
+$Comp
+L UNO U1
+U 1 1 5D66D46F
+P 3500 2500
+F 0 "U1" H 3500 2700 60  0000 C CNN
+F 1 "UNO" H 3550 2550 60  0000 C CNN
+F 2 "~" H 3500 2500 60  0000 C CNN
+F 3 "~" H 3500 2500 60  0000 C CNN
+	1    3500 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 3100 4400 2350
+Wire Wire Line
+	4400 2350 4000 2350
+Wire Wire Line
+	4000 2200 4000 1750
+Wire Wire Line
+	4000 1750 2350 1750
+Wire Wire Line
+	2350 1750 2350 2300
+Wire Wire Line
+	2350 2300 2950 2300
+Wire Wire Line
+	2600 3000 2600 2300
+Connection ~ 2600 2300
+Wire Wire Line
+	2800 3500 2800 2200
+Wire Wire Line
+	2800 2200 2950 2200
+Connection ~ 4350 3500
+Wire Wire Line
+	2950 2400 2950 3200
+Connection ~ 2950 3200
+Wire Wire Line
+	4000 2650 4750 2650
+Connection ~ 4750 2650
+Wire Wire Line
+	4000 2550 4650 2550
+Connection ~ 4650 2550
 $EndSCHEMATC

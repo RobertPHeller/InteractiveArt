@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181111.1509>
+//  Last Modified : <190828.1514>
 //
 //  Description	
 //
@@ -68,6 +68,7 @@ Adafruit_24bargraph pulseBar;
 //*   Initialize displays to a zero state*
 //****************************************
 void setup() {
+    analogReference(EXTERNAL);
     pulseSensor.analogInput(PULSE_INPUT);  // Connect sensor
     if (!pulseSensor.begin()) {            // Start sensing
         for(;;) {

@@ -1,4 +1,4 @@
-update=Mon 05 Nov 2018 09:41:05 EST
+update=Wed 28 Aug 2019 16:21:59 EDT
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -51,14 +51,15 @@ LibName31=/home/heller/InteractiveArt/adafruit_breakouts
 LibName32=/home/heller/InteractiveArt/feather_m0_express
 LibName33=/home/heller/InteractiveArt/metromini
 LibName34=/home/heller/InteractiveArt/itsybitsy
+LibName35=uno
 [pcbnew]
 version=1
 LastNetListRead=PagingDrHowardEtAl.net
 UseCmpFile=1
-PadDrill="    3.500000"
-PadDrillOvalY="    3.500000"
-PadSizeH="    3.500000"
-PadSizeV="    3.500000"
+PadDrill="    3.048000"
+PadDrillOvalY="    3.048000"
+PadSizeH="    4.064000"
+PadSizeV="    4.064000"
 PcbTextSizeV="    1.500000"
 PcbTextSizeH="    1.500000"
 PcbTextThickness="    0.300000"
@@ -90,3 +91,4 @@ LibName15=pga_sockets
 LibName16=valves
 LibName17=MH
 LibName18=/home/heller/InteractiveArt/ItsyBitsy
+LibName19=uno
