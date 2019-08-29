@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <190828.1514>
+//  Last Modified : <190829.1047>
 //
 //  Description	
 //
@@ -58,6 +58,40 @@ Adafruit_7segment bpmDisplay;
 // Graphical pulse
 Adafruit_24bargraph pulseBar;
 
+#define DASHSEGMENT 0x40
+
+void dashes() {
+    bpmDisplay.writeDigitRaw(0,DASHSEGMENT);
+    bpmDisplay.writeDigitRaw(1,DASHSEGMENT);
+    bpmDisplay.writeDigitRaw(3,DASHSEGMENT);
+    bpmDisplay.writeDigitRaw(4,DASHSEGMENT);
+}    
+
+void clearBar() {
+    for (uint8_t b=0; b<24; b++) {
+        pulseBar.setBar(b,LED_OFF);
+    }
+}
+
+void drawBar(int length) {
+    Serial.print("drawBar(): length is ");Serial.println(length);
+    if (length > 24) length = 24;
+    uint8_t b = 0;
+    for (b=0; b<length; b++) {
+        pulseBar.setBar(b,LED_GREEN);
+    }
+    for (;b<24;b++) {
+        pulseBar.setBar(b,LED_OFF);
+    }
+}
+
+#define THRESHOLD 0
+#define SAMPLECOUNT 1
+double samplesSum = 0;
+int sampleCount = 0;
+
+#define SETTLECOUNT 30
+int settleBeats = 0;
 
 //****************************************
 //* Setup: Initialize everything         *
@@ -68,6 +102,8 @@ Adafruit_24bargraph pulseBar;
 //*   Initialize displays to a zero state*
 //****************************************
 void setup() {
+    Serial.begin(9600);
+    Serial.println("PagingDrHowardEtAl starting");
     analogReference(EXTERNAL);
     pulseSensor.analogInput(PULSE_INPUT);  // Connect sensor
     if (!pulseSensor.begin()) {            // Start sensing
@@ -81,9 +117,9 @@ void setup() {
     }
     bpmDisplay.begin(0x70);     // Connect to Beats per Minute display
     pulseBar.begin(0x71);       // Connect to Graphical pulse display
-    bpmDisplay.print(0,DEC);    // Display zero Beats per Minute
+    dashes();    // Display zero Beats per Minute
     bpmDisplay.writeDisplay();
-    pulseBar.setBar(23,LED_OFF); // Display no pulse
+    clearBar(); // Display no pulse
     pulseBar.writeDisplay();
 }
 
@@ -96,14 +132,37 @@ void setup() {
 //*    Minute display.                   *
 //****************************************
 void loop() {
-    uint16_t sample;
+    int16_t sample;
     uint16_t bpm;
     
     delay(20);
-    sample = pulseSensor.getLatestSample(); // Get sample
-    pulseBar.setBar((int)((sample / 1023.0)*23),LED_GREEN); // Display sample
-    pulseBar.writeDisplay();
     bpm = pulseSensor.getBeatsPerMinute(); // Get BPM
-    bpmDisplay.print(bpm,DEC);             // Display BPM
+    Serial.print("BPM is ");Serial.println(bpm);
+    if (bpm == 0) {
+        dashes();
+        clearBar();
+    } else {
+        bpmDisplay.println(bpm,DEC);             // Display BPM
+        if (pulseSensor.sawNewSample()) {
+            sample = pulseSensor.getLatestSample() - THRESHOLD; // Get sample
+            if (sample < 0) sample = 0;
+            Serial.print("Raw Sample is ");Serial.println(sample);
+            samplesSum += sample;
+            Serial.print("samplesSum is ");Serial.println(samplesSum);
+            Serial.print("sampleCount is ");Serial.println(sampleCount);
+            if (++sampleCount < SAMPLECOUNT) return;
+            Serial.print("samplesSum (final) is ");Serial.println(samplesSum);
+            sample = samplesSum / SAMPLECOUNT;
+            samplesSum = 0;
+            sampleCount = 0;
+            Serial.print("Averaged Sample is ");Serial.println(sample);
+            double s1 = sample/1024.0;
+            Serial.print("s1 is ");Serial.println(s1);
+            int barlen = (int)(s1 * 24);
+            Serial.print("barlen is ");Serial.println(barlen);
+            drawBar(barlen); // Display sample
+        }
+    }
     bpmDisplay.writeDisplay();
+    pulseBar.writeDisplay();
 }
