@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Thu Sep 26 19:54:29 2019
-//  Last Modified : <190927.0922>
+//  Last Modified : <190928.2301>
 //
 //  Description	
 //
@@ -81,6 +81,16 @@ BitMatrix::BitMatrix(const BitMatrix &otherMatrix)
     _bits = new unsigned char[_bytecount];
     for (int ibyte=0;ibyte<_bytecount;ibyte++) 
         _bits[ibyte] = otherMatrix._bits[ibyte];
+}
+
+BitMatrix::BitMatrix(const BitMatrix *otherMatrix)
+{
+    _width = otherMatrix->_width;
+    _height = otherMatrix->_height;
+    _bytewidth = otherMatrix->_bytewidth;
+    _bits = new unsigned char[_bytecount];
+    for (int ibyte=0;ibyte<_bytecount;ibyte++) 
+        _bits[ibyte] = otherMatrix->_bits[ibyte];
 }
 
 BitMatrix::~BitMatrix()
@@ -161,3 +171,12 @@ int Life::_countBitsAt(int i, int j, const BitMatrix &m) const
     return alive;
 }
 
+bool Life::allDeadP() const
+{
+    for (int i = 0; i < _lifeMatrix->Width(); i++) {
+        for (int j = 0; j < _lifeMatrix->Height(); j++) {
+            if ((*_lifeMatrix)(i,j)) return false;
+        }
+    }
+    return (true);
+}

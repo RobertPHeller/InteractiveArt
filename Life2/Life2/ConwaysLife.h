@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Thu Sep 26 19:54:06 2019
-//  Last Modified : <190927.0925>
+//  Last Modified : <190928.2300>
 //
 //  Description	
 //
@@ -53,6 +53,7 @@ public:
     BitMatrix(int width=16, int height=16, const unsigned char *bits = NULL);
     BitMatrix(int width, int height, std::initializer_list<const unsigned char> bits);
     BitMatrix(const BitMatrix &otherMatrix);
+    BitMatrix(const BitMatrix *otherMatrix);
     BitMatrix& operator = (const BitMatrix &otherMatrix);
     ~BitMatrix();
     bool getbit(int i,int j) const;
@@ -60,6 +61,7 @@ public:
     inline bool operator()(int i,int j) const {return getbit(i,j);}
     inline int Width() const {return _width;}
     inline int Height() const {return _height;}
+    inline const unsigned char * Bits() const {return _bits;}
 private:
     unsigned char *_bits;
     int _width;
@@ -72,6 +74,9 @@ private:
 class Life  {
 public:
     Life (const BitMatrix &initialLife) {
+        _lifeMatrix = new BitMatrix(initialLife);
+    }
+    Life (const BitMatrix *initialLife) {
         _lifeMatrix = new BitMatrix(initialLife);
     }
     Life (int width=16, int height=16, const unsigned char *bits = NULL) {
@@ -97,6 +102,8 @@ public:
     }
     void lifeCycle();
     const BitMatrix *currentLife() const {return _lifeMatrix;}
+    const unsigned char *currentBits() const {return _lifeMatrix->Bits();}
+    bool allDeadP() const;
 private:
     BitMatrix *_lifeMatrix;
     int _countBitsAt(int i, int j, const BitMatrix &m) const;
