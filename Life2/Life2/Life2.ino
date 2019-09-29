@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Thu Sep 26 19:49:59 2019
-//  Last Modified : <190928.2308>
+//  Last Modified : <190929.0848>
 //
 //  Description	
 //
@@ -40,12 +40,16 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+#include <Arduino.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <RGBmatrixPanel.h>
 #include <Button.h>
+
+static const char rcsid[] = "@(#) : $Id$";
+
 
 #define CLK  8   // USE THIS ON ADAFRUIT METRO M0, etc.
 //#define CLK A4 // USE THIS ON METRO M4 (not M0)
@@ -79,8 +83,6 @@ Button Center(12);
 Button Right(11);
 
 int delayCount, cycleCount, selectedLifeIndex, displayedLifeIndex;
-
-static const char rcsid[] = "@(#) : $Id$";
 
 void setup() {
     Serial.begin(9600);
@@ -118,6 +120,8 @@ void displayCurrent(int index)
     display.println(InitialMatrixList[selectedLifeIndex].name);
     display.println("");
     display.println("Previous Select Next");
+    
+    display.display();
 }
                 
 void loop() {
@@ -143,6 +147,7 @@ void loop() {
                     currentState = Sleep;
                     matrix.fillScreen(0x0000);
                     display.clearDisplay();
+                    display.display();
                 }
             }
         }
@@ -151,21 +156,24 @@ void loop() {
     case Sleep:
         if (Center.pressed()) {
             currentState = Idle;
+            displayCurrent(displayedLifeIndex);
         }
     case Life:
     case Idle:
-        displayCurrent(displayedLifeIndex);
         if (Left.pressed()) {
             displayedLifeIndex--;
             if (displayedLifeIndex < 0) displayedLifeIndex = 0;
+            displayCurrent(displayedLifeIndex);
         } else if (Right.pressed()) {
             displayedLifeIndex++;
             if (InitialMatrixList[displayedLifeIndex].bitmatrix == NULL) 
                 displayedLifeIndex--;
+            displayCurrent(displayedLifeIndex);
         } else if (Center.pressed()) {
             selectedLifeIndex = displayedLifeIndex;
             life.SetLife(InitialMatrixList[selectedLifeIndex].bitmatrix);
             currentState = Life;
+            displayCurrent(displayedLifeIndex);
         }
     }
     delay(100);
