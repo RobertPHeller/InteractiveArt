@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : $USER_NAME$
 //  Created       : $ASCII_TIME$
-//  Last Modified : <181111.2025>
+//  Last Modified : <220710.1124>
 //
 //  Description	
 //
@@ -41,7 +41,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 static const char rcsid[] = "@(#) : $Id$";
-
+#include <Arduino.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_LEDBackpack.h>
 
@@ -49,10 +49,16 @@ static const char rcsid[] = "@(#) : $Id$";
 const int TRAFFIC_RED = 12;
 const int TRAFFIC_YELLOW = 11;
 const int TRAFFIC_GREEN = 10;
+const int LAMP_ON = LOW;
+const int LAMP_OFF = HIGH;
 // Walk button
 const int WALK_BUTTON = 9;
 
-int crossTime = 5000;  //time for pedestrians to pass unsigned
+const int crossTime = 5000;  //time for pedestrians to pass unsigned
+const int yellowTime = 2000; // Yellow time
+const int crossDelay = 1000; // crossing delay
+const int handBlinkCount = 10; // Number of time to blink the hand.
+const int blinkDelay = 500; // Hand blink delay
 long changeTime; //time that the button is pressed
 
 // Bitmaps for the Pedestrian Signal (an 8x8 BiColor matrix)
@@ -73,9 +79,9 @@ void setup() {
     pinMode(TRAFFIC_YELLOW,OUTPUT);
     pinMode(TRAFFIC_GREEN,OUTPUT);
     pinMode(WALK_BUTTON,INPUT_PULLUP);
-    digitalWrite(TRAFFIC_RED,LOW);
-    digitalWrite(TRAFFIC_YELLOW,LOW);
-    digitalWrite(TRAFFIC_GREEN,HIGH);
+    digitalWrite(TRAFFIC_RED,LAMP_OFF);
+    digitalWrite(TRAFFIC_YELLOW,LAMP_OFF);
+    digitalWrite(TRAFFIC_GREEN,LAMP_ON);
     pedestrianSignal.begin(0x70);
     pedestrianSignal.clear();
     pedestrianSignal.drawBitmap(0,0,hand_bmp,8,8,LED_RED);
@@ -109,12 +115,12 @@ void loop() {
 //* cars, then capture the change time.                         *
 //***************************************************************
 void changeLights() {
-    digitalWrite(TRAFFIC_GREEN,LOW); // Green off
-    digitalWrite(TRAFFIC_YELLOW,HIGH); // Yellow on
-    delay(2000); // 2 seconds
-    digitalWrite(TRAFFIC_YELLOW,LOW); // Yellow off
-    digitalWrite(TRAFFIC_RED,HIGH); // Red on
-    delay(1000); // 1 second
+    digitalWrite(TRAFFIC_GREEN,LAMP_OFF); // Green off
+    digitalWrite(TRAFFIC_YELLOW,LAMP_ON); // Yellow on
+    delay(yellowTime); // 2 seconds
+    digitalWrite(TRAFFIC_YELLOW,LAMP_OFF); // Yellow off
+    digitalWrite(TRAFFIC_RED,LAMP_ON); // Red on
+    delay(crossDelay); // 1 second
     
     // Display a chicken in green
     pedestrianSignal.clear();
@@ -122,21 +128,21 @@ void changeLights() {
     pedestrianSignal.writeDisplay();
     delay(crossTime); // Crossing time
     //blink red hand on pedestrian signal to notify pedestrians to pass so
-    for (int x=0; x<10; x++) {
+    for (int x=0; x<handBlinkCount; x++) {
         
         pedestrianSignal.clear(); // Off
         pedestrianSignal.writeDisplay(); 
-        delay(500); // 1/2 second
+        delay(blinkDelay); // 1/2 second
         pedestrianSignal.drawBitmap(0,0,hand_bmp,8,8,LED_RED); // Red hand
         pedestrianSignal.writeDisplay();
-        delay(500); // 1/2 second
+        delay(blinkDelay); // 1/2 second
     }
     pedestrianSignal.drawBitmap(0,0,hand_bmp,8,8,LED_RED); // Red hand
     pedestrianSignal.writeDisplay();
-    delay(500); // 1/2 second
-    digitalWrite(TRAFFIC_RED,LOW); // Red off
-    digitalWrite(TRAFFIC_YELLOW,LOW); // Yellow off
-    digitalWrite(TRAFFIC_GREEN,HIGH); // Green on
+    delay(blinkDelay); // 1/2 second
+    digitalWrite(TRAFFIC_RED,LAMP_OFF); // Red off
+    digitalWrite(TRAFFIC_YELLOW,LAMP_OFF); // Yellow off
+    digitalWrite(TRAFFIC_GREEN,LAMP_ON); // Green on
     changeTime = millis(); // Capture time
 }
 
