@@ -9,7 +9,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Sun Jul 10 14:27:21 2022
-#  Last Modified : <220711.1719>
+#  Last Modified : <220711.1726>
 #
 #  Description	
 #
@@ -195,8 +195,8 @@ class WalkButton(object):
                 self._buttonHousingHeight-(self._buttonHeight-3)))))).extrude(Base.Vector(0,0,self._buttonHeight))
         button = button.cut(\
             Part.Face(Part.Wire(Part.makeCircle(\
-            self._buttonStemDiameter/2,Base.Vector(centerX,centerY,\
-                self._buttonHousingHeight-(self._buttonHeight-3))))).\
+            self._buttonStemDiameter/2,origin.add(Base.Vector(centerX,centerY,\
+                self._buttonHousingHeight-(self._buttonHeight-3)))))).\
                 extrude(Base.Vector(0,0,self._buttonStemDiameter)))
         try:
             App.closeDocument("scratch")
@@ -205,7 +205,7 @@ class WalkButton(object):
         tempdoc = App.newDocument("scratch")
         importSVG.insert("walk.svg","scratch")
         ## Inkscape text size: 8.34mm wide, 2.8mm high
-        buttonTop=Base.Vector(centerX-(8.34/2),centerY+(2.8/2),self._buttonHousingHeight+3)
+        buttonTop=origin.add(Base.Vector(centerX-(8.34/2),centerY+(2.8/2),self._buttonHousingHeight+3))
         ## Raise letters 1mm
         lextrude = Base.Vector(0,0,1)
         for o in tempdoc.Objects:
@@ -239,13 +239,13 @@ if __name__ == '__main__':
     App.ActiveDocument=App.newDocument("WhyDidTheChicken_3DPrints")
     doc = App.activeDocument()
     op = Base.Vector(0,0,0)
-    #pedsignalframe = PedSignalFrame("pedframe",op)
-    #pedsignalframe.show()
-    #pedsignalframe.makeStl("pedsignalframe.stl")
-    #trafficlightframe = TrafficLightFrame("trafficlight",op)
-    #trafficlightframe.show()
-    #trafficlightframe.makeStl("trafficlightframe.stl")
-    walkbutton = WalkButton("walkbutton",op)
+    pedsignalframe = PedSignalFrame("pedframe",op)
+    pedsignalframe.show()
+    pedsignalframe.makeStl("pedsignalframe.stl")
+    trafficlightframe = TrafficLightFrame("trafficlight",op.add(Base.Vector(100,0,0)))
+    trafficlightframe.show()
+    trafficlightframe.makeStl("trafficlightframe.stl")
+    walkbutton = WalkButton("walkbutton",op.add(Base.Vector(200,0,0)))
     walkbutton.show()
     walkbutton.MakeSTL("housing.stl","button.stl")
     Gui.SendMsgToActiveView("ViewFit")
