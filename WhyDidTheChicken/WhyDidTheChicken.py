@@ -9,7 +9,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Sun Jul 10 14:27:21 2022
-#  Last Modified : <220710.1631>
+#  Last Modified : <220711.1426>
 #
 #  Description	
 #
@@ -153,6 +153,73 @@ class TrafficLightFrame(object):
                 .extrude(shieldExtrude))
         return(shield)
 
+
+class WalkButton(object):
+    _buttonStemDiameter = 2
+    _buttonStemLength = 4
+    _nutClearance = 12
+    _buttonDiameter = 15
+    _buttonHeight = 15
+    _buttonHousingWidth = 20
+    _buttonHousingLength = 40
+    _buttonHousingHeight = 20
+    _buttonHousingShelfHeight = 5
+    def __init__(self,name,origin):
+        self.name = name
+        if not isinstance(origin,Base.Vector):
+            raise RuntimeError("origin is not a Vector")
+        self.origin = origin
+        ox = origin.x
+        oy = origin.y
+        oz = origin.z
+        ZNorm=Base.Vector(0,0,1)
+        ZHousing=Base.Vector(0,0,self._buttonHousingHeight)
+        ZButton=Base.Vector(0,0,self._buttonHeight)
+        housing = Part.makePlane(self._buttonHousingWidth,\
+                              self._buttonHousingLength,\
+                              origin,ZNorm).extrude(ZHousing)
+        centerX = self._buttonHousingWidth/2.0
+        centerY = self._buttonHousingLength*.75
+        housing = housing.cut(\
+            Part.Face(Part.Wire(Part.makeCircle(\
+              (self._buttonDiameter/2)+1,\
+              origin.add(Base.Vector(centerX,centerY,0)))))\
+              .extrude(ZHousing.add(Base.Vector(0,0,1))))
+        self.housing = housing.cut(\
+            Part.makePlane(self._buttonHousingWidth,\
+                           self._buttonHousingLength/2,\
+                           origin.add(Base.Vector(0,0,self._buttonHousingShelfHeight)),\
+                           ZNorm).extrude(ZHousing))
+        button = Part.Face(Part.Wire(Part.makeCircle(\
+            self._buttonDiameter/2,origin.add(Base.Vector(centerX,centerY,\
+                self._buttonHousingHeight-(self._buttonHeight-3)))))).extrude(Base.Vector(0,0,self._buttonHeight))
+        button = button.cut(\
+            Part.Face(Part.Wire(Part.makeCircle(\
+            self._buttonStemDiameter/2,Base.Vector(centerX,centerY,\
+                self._buttonHousingHeight-(self._buttonHeight-3))))).\
+                extrude(Base.Vector(0,0,self._buttonStemDiameter)))
+        self.button = button
+    def show(self):
+        doc = App.activeDocument()
+        obj = doc.addObject("Part::Feature",self.name+"_housing")
+        obj.Shape = self.housing
+        obj.Label=self.name+"_housing"
+        obj.ViewObject.ShapeColor=tuple([0.75,0.75,0.75])
+        self.hobj = obj
+        obj = doc.addObject("Part::Feature",self.name+"_button")
+        obj.Shape = self.button
+        obj.Label=self.name+"_button"
+        obj.ViewObject.ShapeColor=tuple([0.95,.95,.95])
+        self.bobj = obj
+    def MakeSTL(self,housingfile,buttonfile):
+        objs=[]
+        objs.append(self.hobj)
+        Mesh.export(objs,housingfile)
+        objs=[]
+        objs.append(self.bobj)
+        Mesh.export(objs,buttonfile)
+        
+
 if __name__ == '__main__':
     App.ActiveDocument=App.newDocument("3D prints")
     doc = App.activeDocument()
@@ -160,9 +227,12 @@ if __name__ == '__main__':
     #pedsignalframe = PedSignalFrame("pedframe",op)
     #pedsignalframe.show()
     #pedsignalframe.makeStl("pedsignalframe.stl")
-    trafficlightframe = TrafficLightFrame("trafficlight",op)
-    trafficlightframe.show()
-    trafficlightframe.makeStl("trafficlightframe.stl")
+    #trafficlightframe = TrafficLightFrame("trafficlight",op)
+    #trafficlightframe.show()
+    #trafficlightframe.makeStl("trafficlightframe.stl")
+    walkbutton = WalkButton("walkbutton",op)
+    walkbutton.show()
+    walkbutton.MakeSTL("housing.stl","button.stl")
     Gui.SendMsgToActiveView("ViewFit")
     Gui.activeDocument().activeView().viewIsometric()
 
