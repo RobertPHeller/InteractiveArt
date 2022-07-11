@@ -9,7 +9,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Sun Jul 10 14:27:21 2022
-#  Last Modified : <220711.1611>
+#  Last Modified : <220711.1719>
 #
 #  Description	
 #
@@ -204,17 +204,15 @@ class WalkButton(object):
             pass
         tempdoc = App.newDocument("scratch")
         importSVG.insert("walk.svg","scratch")
-        objs=tempdoc.Objects
-        shapes2d=[]
-        for o in objs:
-            shapes2d.append(o.Shape.copy())
-        App.closeDocument("scratch")
-        del objs
+        ## Inkscape text size: 8.34mm wide, 2.8mm high
         buttonTop=Base.Vector(centerX-(8.34/2),centerY+(2.8/2),self._buttonHousingHeight+3)
+        ## Raise letters 1mm
         lextrude = Base.Vector(0,0,1)
-        for s2d in shapes2d:
-            shape3d = s2d.translate(buttonTop).extrude(lextrude)
-            button = button.fuse(shape3d)
+        for o in tempdoc.Objects:
+            letter2d = o.Shape.copy()
+            letter3d = letter2d.translate(buttonTop).extrude(lextrude)
+            button = button.fuse(letter3d)
+        App.closeDocument("scratch")
         self.button = button
     def show(self):
         doc = App.activeDocument()
