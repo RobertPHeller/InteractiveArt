@@ -9,7 +9,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Sun Jul 10 14:27:21 2022
-#  Last Modified : <220711.1426>
+#  Last Modified : <220711.1611>
 #
 #  Description	
 #
@@ -41,11 +41,11 @@
 #
 #*****************************************************************************
 
-
 import FreeCAD as App
 import Part
 from FreeCAD import Base
 import Mesh
+import importSVG
 import os
 import sys
 sys.path.append(os.path.dirname(__file__))
@@ -198,6 +198,23 @@ class WalkButton(object):
             self._buttonStemDiameter/2,Base.Vector(centerX,centerY,\
                 self._buttonHousingHeight-(self._buttonHeight-3))))).\
                 extrude(Base.Vector(0,0,self._buttonStemDiameter)))
+        try:
+            App.closeDocument("scratch")
+        except Exception as e:
+            pass
+        tempdoc = App.newDocument("scratch")
+        importSVG.insert("walk.svg","scratch")
+        objs=tempdoc.Objects
+        shapes2d=[]
+        for o in objs:
+            shapes2d.append(o.Shape.copy())
+        App.closeDocument("scratch")
+        del objs
+        buttonTop=Base.Vector(centerX-(8.34/2),centerY+(2.8/2),self._buttonHousingHeight+3)
+        lextrude = Base.Vector(0,0,1)
+        for s2d in shapes2d:
+            shape3d = s2d.translate(buttonTop).extrude(lextrude)
+            button = button.fuse(shape3d)
         self.button = button
     def show(self):
         doc = App.activeDocument()
@@ -221,7 +238,7 @@ class WalkButton(object):
         
 
 if __name__ == '__main__':
-    App.ActiveDocument=App.newDocument("3D prints")
+    App.ActiveDocument=App.newDocument("WhyDidTheChicken_3DPrints")
     doc = App.activeDocument()
     op = Base.Vector(0,0,0)
     #pedsignalframe = PedSignalFrame("pedframe",op)
