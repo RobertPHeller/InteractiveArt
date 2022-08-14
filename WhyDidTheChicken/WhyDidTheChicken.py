@@ -9,7 +9,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Sun Jul 10 14:27:21 2022
-#  Last Modified : <220711.1726>
+#  Last Modified : <220814.0952>
 #
 #  Description	
 #
@@ -155,8 +155,8 @@ class TrafficLightFrame(object):
 
 
 class WalkButton(object):
-    _buttonStemDiameter = 2
-    _buttonStemLength = 4
+    _buttonInnerDiameter = 10.5
+    _buttonInnerLength = 8.5
     _nutClearance = 12
     _buttonDiameter = 15
     _buttonHeight = 15
@@ -195,9 +195,9 @@ class WalkButton(object):
                 self._buttonHousingHeight-(self._buttonHeight-3)))))).extrude(Base.Vector(0,0,self._buttonHeight))
         button = button.cut(\
             Part.Face(Part.Wire(Part.makeCircle(\
-            self._buttonStemDiameter/2,origin.add(Base.Vector(centerX,centerY,\
+            self._buttonInnerDiameter/2,origin.add(Base.Vector(centerX,centerY,\
                 self._buttonHousingHeight-(self._buttonHeight-3)))))).\
-                extrude(Base.Vector(0,0,self._buttonStemDiameter)))
+                extrude(Base.Vector(0,0,self._buttonInnerDiameter)))
         try:
             App.closeDocument("scratch")
         except Exception as e:
@@ -239,12 +239,12 @@ if __name__ == '__main__':
     App.ActiveDocument=App.newDocument("WhyDidTheChicken_3DPrints")
     doc = App.activeDocument()
     op = Base.Vector(0,0,0)
-    pedsignalframe = PedSignalFrame("pedframe",op)
-    pedsignalframe.show()
-    pedsignalframe.makeStl("pedsignalframe.stl")
-    trafficlightframe = TrafficLightFrame("trafficlight",op.add(Base.Vector(100,0,0)))
-    trafficlightframe.show()
-    trafficlightframe.makeStl("trafficlightframe.stl")
+    #pedsignalframe = PedSignalFrame("pedframe",op)
+    #pedsignalframe.show()
+    #pedsignalframe.makeStl("pedsignalframe.stl")
+    #trafficlightframe = TrafficLightFrame("trafficlight",op.add(Base.Vector(100,0,0)))
+    #trafficlightframe.show()
+    #trafficlightframe.makeStl("trafficlightframe.stl")
     walkbutton = WalkButton("walkbutton",op.add(Base.Vector(200,0,0)))
     walkbutton.show()
     walkbutton.MakeSTL("housing.stl","button.stl")
