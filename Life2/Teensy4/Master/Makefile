@@ -208,5 +208,17 @@ Libs/libsmartmat.a: FORCE
 Libs/libsd.a: FORCE 
 	make -C Libs libsd.a
 	
+Libs/libwire.a: FORCE 
+	make -C Libs libwire.a
+	
+Libs/libadafruitgfx.a: FORCE 
+	make -C Libs libadafruitgfx.a
+	
+Libs/libadafruitssd1306.a: FORCE 
+	make -C Libs libadafruitssd1306.a
+	
+Libs/libadafruitbusio.a: FORCE 
+	make -C Libs libadafruitbusio.a
+	
 
 FORCE:

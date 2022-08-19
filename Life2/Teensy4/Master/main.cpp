@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Wed Aug 17 17:39:54 2022
-//  Last Modified : <220818.1635>
+//  Last Modified : <220819.1340>
 //
 //  Description	
 //
@@ -53,7 +53,9 @@ static const char rcsid[] = "@(#) : $Id$";
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+#include "DirectoryList.h"
 #include "ConwaysLife.h"
+#include "Button.h"
 
 #define IPCChannel Serial1
 
@@ -85,7 +87,34 @@ void DrawUpperHalf()
         for (x = 0; x < 128; x++)
         {
             bit = life.currentLife()->getbit(x,y);
-            SM_RGB pixel = {bit,bit,bit};
+            SM_RGB pixel = backgroundLayer.readPixel(x,y);
+            if (bit)
+            {
+                if (pixel.red > 128) 
+                {
+                    pixel.red--;
+                }
+                else if (pixel.green > 128)
+                {
+                    pixel.green--;
+                }
+                else if (pixel.blue > 128)
+                {
+                    pixel.blue--;
+                }
+                else
+                {
+                    pixel.red = 255;
+                    pixel.green = 255;
+                    pixel.blue = 255;
+                }
+            }
+            else
+            {
+                pixel.red = 0;
+                pixel.green = 0;
+                pixel.blue = 0;
+            }
             backgroundLayer.drawPixel(x,y,pixel);
         }
     }
@@ -141,6 +170,16 @@ const int SDchipSelect = BUILTIN_SDCARD;
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+#define LOWER  20
+#define MIDDLE 21
+#define UPPER  22
+
+Button Lower(LOWER);
+Button Middle(MIDDLE);
+Button Upper(UPPER);
+
+void LoadNewLife(const char * lifefile, Life &life);
+
 extern "C" int main(void)
 {
     Serial.begin(115200);
@@ -171,10 +210,51 @@ extern "C" int main(void)
     delay(2000); // Pause for 2 seconds
     // Clear the buffer
     display.clearDisplay();
-    
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0,0);
+    DirectoryList dirList(SD.open("/"));
+    size_t curIndex = 0;
+    size_t curTop   = 0;
+    size_t lines    = 4;
+    dirList.showFiles(display,curTop,lines,curIndex);
+    Lower.begin();
+    Middle.begin();
+    Upper.begin();
     while(1)
     {
-        if (!life.allDeadP())
+        bool updateDisplay = false;
+        if (Upper.pressed())
+        {
+            if (curIndex > 0)
+            {
+                curIndex--;
+                if (curIndex < curTop)
+                {
+                    curTop--;
+                }
+                updateDisplay = true;
+            }
+        }
+        if (Lower.pressed())
+        {
+            if ((curIndex+1) < (curTop+lines))
+            {
+                curIndex++;
+                if (curIndex >= (curTop+lines))
+                {
+                    curTop++;
+                }
+                updateDisplay = true;
+            }
+        }
+        if (updateDisplay) dirList.showFiles(display,curTop,lines,curIndex);
+        if (Middle.pressed())
+        {
+            LoadNewLife(dirList[curIndex],life);
+            DrawUpperHalf();
+            SendLowerHalf();
+        } else if (!life.allDeadP()) 
         {
             life.lifeCycle();
             DrawUpperHalf();

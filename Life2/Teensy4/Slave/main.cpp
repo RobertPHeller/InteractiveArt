@@ -8,7 +8,7 @@
 //  Author        : $Author$
 //  Created By    : Robert Heller
 //  Created       : Wed Aug 17 17:40:55 2022
-//  Last Modified : <220818.1337>
+//  Last Modified : <220819.0920>
 //
 //  Description	
 //
@@ -85,8 +85,35 @@ void WriteLine(char *buffer,size_t l)
                 p += 2; l -= 2;
                 for (ibit = 0; ibit < 8; ibit++)
                 {
+                    SM_RGB pixel = backgroundLayer.readPixel(x,y);
                     bit = (byte >> ibit) & 1;
-                    SM_RGB pixel = {bit,bit,bit};
+                    if (bit)
+                    {
+                        if (pixel.red > 128) 
+                        {
+                            pixel.red--;
+                        }
+                        else if (pixel.green > 128)
+                        {
+                            pixel.green--;
+                        }
+                        else if (pixel.blue > 128)
+                        {
+                            pixel.blue--;
+                        }
+                        else
+                        {
+                            pixel.red = 255;
+                            pixel.green = 255;
+                            pixel.blue = 255;
+                        }
+                    }
+                    else
+                    {
+                        pixel.red = 0;
+                        pixel.green = 0;
+                        pixel.blue = 0;
+                    }
                     backgroundLayer.drawPixel(x,y,pixel);
                     x++;
                     if (x >= kMatrixWidth)
