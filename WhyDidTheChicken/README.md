@@ -2,7 +2,7 @@
 
 This piece poses the age old question about chickens crossing roads.  The 
 piece does not provide an answer, but does provide for the crossing to be made 
-safely.  Press the ``Walk'' button to have the traffic lights change and 
+safely.  Press the "Walk" button to have the traffic lights change and 
 present a green walk signal.
 
 ## Processing Element
