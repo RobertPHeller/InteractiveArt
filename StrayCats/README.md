@@ -16,7 +16,7 @@ This piece uses an Adafruit Feather M0 Express.
 
 ## Components of Note
 
-* An Adafruit 1.8'' TFT Display Breakout, that features a microSD card 
+* An Adafruit 1.8" TFT Display Breakout, that features a microSD card 
 slot.
 * An IR Detector and a mini remote control.
 
