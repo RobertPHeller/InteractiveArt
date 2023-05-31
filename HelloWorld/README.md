@@ -1,11 +1,11 @@
 # HelloWorld
 
 Typically, the first program a programmer writes is one that prints a simple 
-message.  The first program in the \textit{C Programming Language} by  Brian 
-W. Kernighan and Dennis M. Ritchie is a program that prints ``Hello World'' on 
+message.  The first program in the _C Programming Language_ by  Brian 
+W. Kernighan and Dennis M. Ritchie is a program that prints "Hello World" on 
 the computer console.  This first piece actually does this, in 12 different 
 languages.  Touch a foil covered country on the map of the world and see 
-``Hello World'' displayed on the small screen located in the middle of the 
+"Hello World" displayed on the small screen located in the middle of the 
 North Atlantic Ocean in the language of the country you touched.
 
 ## Processing Element
