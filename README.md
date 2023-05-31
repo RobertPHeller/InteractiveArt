@@ -6,7 +6,7 @@ micro-processors to provide the "smarts" for the interactivity.
 
 The projects include:
 
-1. [Hello World](RobertPHeller/InteractiveArt/tree/master/HelloWorld)
+1. [Hello World](HelloWorld)
 2. [Welcome To Gothem City](RobertPHeller/InteractiveArt/tree/master/WelcomeToGothemCity)
 3. [Paging Dr. Howard, Dr Fine, Dr. Howard](RobertPHeller/InteractiveArt/tree/master/PagingDrHowardEtAl)
 4. [Why Did The Chicken Cross The Street](RobertPHeller/InteractiveArt/tree/master/WhyDidTheChicken)
